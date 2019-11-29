@@ -4,7 +4,7 @@ export default class Find extends Component {
     render() {
         return (
             <PageContainer>
-                Find
+                9.9包邮
             </PageContainer>
         )
     }

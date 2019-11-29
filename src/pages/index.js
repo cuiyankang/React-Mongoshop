@@ -6,13 +6,13 @@ export const Home = Loadable({
     loading: Loading
 })
 
-export const Find = Loadable({
-    loader: () => import("./find"),
+export const Nine = Loadable({
+    loader: () => import("./nine"),
     loading: Loading
 })
 
-export const Order = Loadable({
-    loader: () => import("./order"),
+export const Sort = Loadable({
+    loader: () => import("./sort"),
     loading: Loading
 })
 
@@ -23,5 +23,10 @@ export const Mine = Loadable({
 
 export const Login = Loadable({
     loader: () => import("./login"),
+    loading: Loading
+})
+
+export const Collect = Loadable({
+    loader: () => import("./collect"),
     loading: Loading
 })

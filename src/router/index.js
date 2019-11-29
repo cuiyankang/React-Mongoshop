@@ -1,7 +1,8 @@
 import {
     Home,
-    Find,
-    Order,
+    Nine,
+    Sort,
+    Collect,
     Mine,
     Login
 } from "pages"
@@ -14,26 +15,35 @@ export const TabBarRoute = [
         meta:{
             flag:true
         },
-        icon:"\ue628",
+        icon:"\ue606",
         text:"首页"
     },
     {
-        path:"/find",
-        component:Find,
+        path:"/nine",
+        component:Nine,
         meta:{
             flag:true
         },
-        icon:"\ue663",
-        text:"发现"
+        icon:"\ue610",
+        text:"9.9包邮"
     },
     {
-        path:"/order",
-        component:Order,
+        path:"/sort",
+        component:Sort,
         meta:{
             flag:true
         },
-        icon:"\ue737",
-        text:"礼物"
+        icon:"\ue6a1",
+        text:"分类"
+    },
+    {
+        path:"/collect",
+        component:Collect,
+        meta:{
+            flag:true
+        },
+        icon:"\ue600",
+        text:"收藏"
     },
     {
         path:"/mine",
@@ -42,7 +52,7 @@ export const TabBarRoute = [
             flag:true,
             requiredAuth:true
         },
-        icon:"\ue617",
+        icon:"\ue62f",
         text:"我的"
     }
 ];

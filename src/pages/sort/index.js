@@ -4,7 +4,7 @@ export default class Order extends Component {
     render() {
         return (
             <PageContainer>
-                Order
+                Sort
             </PageContainer>
         )
     }
