@@ -3,7 +3,6 @@ import { HashRouter as Router, Switch, Redirect } from "react-router-dom"
 import { RouteConfig } from "router"
 import routeEach from "utils/routeEach"
 
-
 class App extends Component {
   render() {
     return (
@@ -16,5 +15,4 @@ class App extends Component {
     )
   }
 }
-
 export default App
