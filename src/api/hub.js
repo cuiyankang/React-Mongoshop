@@ -14,10 +14,9 @@ import http from "utils/request";
 export const ListApi = () => http.get({
         url: "/ajax/index.php",
         data: {
-            r: "class/cyajaxsub",
+            r: "nine/listajax",
+            n_id:58,
             page: 1,
-            cid: 22,
-            px: 't',
             cac_id:''
         }
     })

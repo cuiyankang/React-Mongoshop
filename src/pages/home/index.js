@@ -88,11 +88,11 @@ export default class Home extends Component {
                                                 {this.state.data.map(val => (
                                                     <a
                                                         key={val}
-                                                        style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
+                                                        style={{ display: 'inline-block', width: '100%', height: '2.8rem' }}
                                                     >
                                                         <img
                                                             src={val}
-                                                            style={{ width: '100%', height: this.state.imgHeight, borderRadius: '5px' }}
+                                                            style={{ width: '100%', height: '100%', borderRadius: '5px' }}
                                                         />
                                                     </a>
                                                 ))}

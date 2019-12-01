@@ -6,7 +6,7 @@ export const mapStateToProps = (state)=>({
 
 
 export const mapDispatchToProps = (dispatch)=>({
-    handleAsyncnine(){
-        dispatch(categoryAsyncAction())
+    handleAsyncnine(page){
+        dispatch(categoryAsyncAction(page))
     }
 })

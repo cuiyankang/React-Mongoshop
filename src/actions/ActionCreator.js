@@ -1,8 +1,9 @@
 import {ListApi} from "../api/hub";
+import {hotNine} from "./ActionTypes"
 
 export const categoryAsyncAction = ()=>{
     var getAsyncAction = (data)=>({
-        type:"HOT_NINE",
+        type:hotNine,
         data:data
     })
 
