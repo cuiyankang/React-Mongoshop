@@ -1,3 +1,4 @@
+import {hotNine} from "./ActionTypes"
 import {ListApi,categoryApi} from "../api/hub";
 
 //九块九

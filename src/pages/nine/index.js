@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "./mapStore"
 import { Container } from "./styled"
-import Bscroll from "common/bscroll"
 @connect(mapStateToProps, mapDispatchToProps)
 
 class Find extends Component {
@@ -16,7 +15,6 @@ class Find extends Component {
         let data = this.props.data.nine.data.data;
 
         return (
-            <Bscroll ref="scroll">
                 <Container>
                     <div className="freeShipping">
                         {/* 头部 */}
@@ -268,7 +266,6 @@ class Find extends Component {
 
                     </div>
                 </Container>
-            </Bscroll>
         )
     }
     componentWillUpdate(){
