@@ -2,13 +2,25 @@
 import React, { Component } from 'react'
 import { PageContainer } from "common/styled"
 import { Sort, Header, Container } from "./styled"
-
-
+import { connect } from "react-redux";
+import { mapStateToProps, mapDispatchToProps } from "./mapStore"
+import Categoryeach from "./rightEach";
+@connect(mapStateToProps, mapDispatchToProps)
 
 
 class Order extends Component {
-    render() {
+    constructor() {
+        super()
+        this.state = {
+            activeIndex: "25"
+        }
 
+    }
+    render() {
+        let fenlei = this.props.data.fenlei.data.data
+        let { activeIndex } = this.state
+        // console.log(activeIndex, 555)
+        // console.log(fenlei, 999)
         return (
             <PageContainer>
                 <Sort>
@@ -22,157 +34,38 @@ class Order extends Component {
                     <Container>
                         <div className="left">
                             <ul>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                                <li>为你推荐</li>
-                            </ul>
+                                {
+                                    fenlei ? (fenlei.map((item, index) => (
+                                        <li key={item.cid}
+                                            onClick={this.handleClick.bind(this, item.cid)}
+                                            className={activeIndex === item.cid ? "active" : ""}
+                                        >{item.name}</li>
+                                    ))) : ""
+                                }
 
+
+                            </ul>
                         </div>
                         <div className="right">
-                            <div className="right_small">
-                                <h3 className="title">热门分类</h3>
-                                <ul>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="right_small">
-                                <h3 className="title">热门分类</h3>
-                                <ul>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="right_small">
-                                <h3 className="title">热门分类</h3>
-                                <ul>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                    <li className="item">
-                                        <a>
-                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01txUvTm2JJhzClLojK_!!2053469401.png_310x310.jpg_.webp" />
-                                            <p>热门分类</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                             <Categoryeach fenlei={fenlei ? fenlei : []} activeIndex={activeIndex} />
                         </div>
+                       
                     </Container>
                 </Sort>
             </PageContainer>
         )
-      
+
     }
-   
+    componentDidMount() {
+        this.props.handlecategoryAsyncData()
+    }
+    handleClick(id) {
+        // console.log(id)
+        this.setState({
+            activeIndex: id
+        })
+    }
+
 }
 
 

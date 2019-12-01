@@ -92,11 +92,12 @@ export const Main = styled.div`
         bottom: 1.08rem;
         left: 0;
         right: 0;
-            
+         overflow:auto;   
         .main{
             height: auto;
             min-height: 10.79rem;
             background: #F6F6F6;
+            
         }
         .main .banner{
             padding:0 0.11rem;

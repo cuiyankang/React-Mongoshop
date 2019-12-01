@@ -22,3 +22,12 @@ export const ListApi = () => http.get({
         }
     })
 //http://www.mangguozhe.com/index.php?r=class%2Fcyajaxsub&page=1&cid=22&px=t&cac_id=
+
+
+export const categoryApi = () => http.get({
+    url: "/ajax/index.php",
+    data: {
+        r: "class/category",
+        type:1
+    }
+})

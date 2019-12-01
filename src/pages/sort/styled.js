@@ -73,11 +73,12 @@ export const Container = styled.div`
                 width:100%;
                 line-height:.90rem;
                 text-align:center;
-                :active{
-                    background:#fff;
-                    color:#FC3F78;
-                    border-left: .05rem solid red;
-                }
+                
+            }
+            .active{
+                background:#fff;
+                color:#FC3F78;
+                border-left: .05rem solid red;
             }
         }
     }
@@ -86,6 +87,7 @@ export const Container = styled.div`
         overflow:auto;
         display:flex;
         flex-direction:column;
+        background:#fff;
        &>.right_small{
             &>.title{
                 padding:5%;
