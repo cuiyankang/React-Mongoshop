@@ -60,7 +60,10 @@ class Rankings extends React.Component {
         // console.log(id, 88)
     }
     handleback() {
+        
         this.props.history.goBack()
+        
+        
     }
 }
 

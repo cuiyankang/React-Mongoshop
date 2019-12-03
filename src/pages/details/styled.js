@@ -7,12 +7,12 @@ export const DetailsCSS = styled.div`
     }
     .iconL{
         position:absolute;color:#fff;font-size:.4rem;
-        left:.2rem;background:rgba(256,256,256,.5);border-radius:50%;
+        left:.2rem;background:rgba(25,25,25,.5);border-radius:50%;
         top:.2rem;height:.6rem;width:.6rem;text-align:center;line-height:.6rem;
     }
     .iconR{
         position:absolute;color:#fff;font-size:.4rem;
-        right:.2rem;background:rgba(256,256,256,.5);border-radius:50%;
+        right:.2rem;background:rgba(25,25,25,.5);border-radius:50%;
         top:.2rem;height:.6rem;width:.6rem;text-align:center;line-height:.6rem;
     }
     .hot{

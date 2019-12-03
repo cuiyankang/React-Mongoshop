@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 
-export const Ranking=styled.div`
+export const Ranking = styled.div`
     width:100%;
     height:100%;
     display:flex;
@@ -9,7 +9,7 @@ export const Ranking=styled.div`
 `
 
 
-export const Header=styled.div`
+export const Header = styled.div`
     width:100%;
     height:.9rem;
     background: linear-gradient(to left,#FA4DBE 0,#FBAA58 100%);
@@ -40,7 +40,7 @@ export const Header=styled.div`
 `
 
 
-export const Category=styled.div`
+export const Category = styled.div`
     height:.88rem;
     width:100%;
     background: linear-gradient(to left,#FA4DBE 0,#FBAA58 100%);
@@ -72,7 +72,7 @@ export const Category=styled.div`
         }
     }
 `
-export const Container=styled.div`
+export const Container = styled.div`
     flex:1;
     margin-top:1.78rem;
     position:absolute;
@@ -94,7 +94,8 @@ export const Container=styled.div`
             padding-left:0;
             position:relative;
             background:#fff;
-            &>.lv{
+            overflow:hidden;
+                &>.lv{
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -185,6 +186,9 @@ export const Container=styled.div`
                     }
                 }
             }
+            
+
+
         }
     }
     
