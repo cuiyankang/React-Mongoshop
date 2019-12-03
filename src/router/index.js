@@ -93,7 +93,7 @@ export const NoTabBarRoute = [
         path:"/details",
         component:Details,
         meta:{
-            flag:true,
+            flag:false,
             // requiredAuth:true
         },
     },

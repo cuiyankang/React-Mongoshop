@@ -18,6 +18,7 @@ class Order extends Component {
 
     }
     render() {
+        // console.log(this.props)
         let fenlei = this.props.data.fenlei.data.data
         let { activeIndex } = this.state
         return (
@@ -25,7 +26,7 @@ class Order extends Component {
                 <Sort>
                     <Header>
                         <i className="iconfont back" onClick={this.handleClickback.bind(this)}>&#xe605;</i>
-                        <div className="input">
+                        <div className="input" onClick={this.handleSearch.bind(this)}>
                             <i className="iconfont search">&#xe60d;</i>
                             <input type="text" defaultValue="输入商品名和粘贴宝贝标题搜索" />
                         </div>
@@ -55,6 +56,9 @@ class Order extends Component {
         )
 
     }
+    handleSearch(){
+        this.props.history.push("/search")
+    }
     handleClickback(){
         this.props.history.goBack()
     }
@@ -62,7 +66,7 @@ class Order extends Component {
         this.props.handlecategoryAsyncData()
     }
     handleClick(id) {
-        // console.log(id)
+        console.log(id)
         this.setState({
             activeIndex: id
         })

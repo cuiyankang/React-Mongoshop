@@ -1,5 +1,6 @@
 import React, { Fragment } from "react"
-
+import { withRouter } from "react-router-dom"
+@withRouter
 
 class HalfEach extends React.Component {
 
@@ -7,12 +8,12 @@ class HalfEach extends React.Component {
         // console.log(this.props)
         let { halflist } = this.props;
 
-        // console.log(halflist.list)
+        console.log(halflist.list)
         return (
             <Fragment>
                 {
                     halflist.list ? halflist.list.map((item, index) => (
-                        <div className="item" key={item.id}>
+                        <div className="item" key={item.id} onClick={this.handleGetId.bind(this,item,item.id)}>
                             <div className="left">
                                 <img src={item.picUrl} />
                             </div>
@@ -42,6 +43,12 @@ class HalfEach extends React.Component {
 
             </Fragment>
         )
+    }
+    handleGetId(item,id) {
+        localStorage.setItem("half",JSON.stringify(item))
+        localStorage.setItem("halfID",JSON.stringify(id))
+        
+        this.props.history.push({pathname:"/details",query:item})
     }
 
 }

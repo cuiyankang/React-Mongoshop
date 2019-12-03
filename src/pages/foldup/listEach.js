@@ -1,15 +1,14 @@
 import React, { Fragment } from "react"
-
+import {withRouter} from "react-router-dom";
+@withRouter
 class FoldUpList extends React.Component {
     render() {
-        // console.log(this.props, 555)
         let { foldlist} = this.props
-        // console.log(foldlist, activeIndex, 888)
         return (
             <Fragment>
                 {
                     foldlist.map((item, index) => (
-                        <div className="item" key={item.id}>
+                        <div className="item" key={item.id} onClick={this.handleGetId.bind(this,item,item.id)}>
                             <div className="left"><img src={item.pic}/></div>
                             <div className="right">
                                 <h3>{item.dtitle}</h3>
@@ -40,6 +39,12 @@ class FoldUpList extends React.Component {
 
             </Fragment>
         )
+    }
+    handleGetId(item,id) {
+        localStorage.setItem("foldup",JSON.stringify(item))
+        localStorage.setItem("foldupID",JSON.stringify(id))
+        
+        this.props.history.push({pathname:"/details",query:item})
     }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { PageContainer } from "common/styled"
-import { Header, Main, Footer } from "./styled"
+import { Header, Main,} from "./styled"
 import { Carousel, WingBlank } from 'antd-mobile';
 import { Tabs, WhiteSpace } from 'antd-mobile';
 import { withRouter } from "react-router-dom";
@@ -15,8 +15,8 @@ class Home extends Component {
         this.state = {
             data: [0, 1, 2, 3, 4],
             imgHeight: 134,
-            data1: [0,1,2,3],
-            flg:[0,1,2]
+            data1: [0, 1, 2, 3],
+            flg: [0, 1, 2]
         }
 
     }
@@ -24,7 +24,7 @@ class Home extends Component {
         setTimeout(() => {
             this.setState({
                 data: ['a', 'b', 'c', 'd', 'f'],
-                data1:['a', 'b', 'c', 'd']
+                data1: ['a', 'b', 'c', 'd']
             });
         }, 100);
         this.props.handleAsyncHome();
@@ -38,17 +38,17 @@ class Home extends Component {
 
     render() {
         let line = this.props.data.line.line_list;
-        let newlineone = this.handlePage(line,1,3)
-        let newlinetwo = this.handlePage(line,2,3)
-        let newlinethree = this.handlePage(line,3,3)
-        let newlinefour = this.handlePage(line,4,3)
-        let newline = [newlineone,newlinetwo,newlinethree,newlinefour];
+        let newlineone = this.handlePage(line, 1, 3)
+        let newlinetwo = this.handlePage(line, 2, 3)
+        let newlinethree = this.handlePage(line, 3, 3)
+        let newlinefour = this.handlePage(line, 4, 3)
+        let newline = [newlineone, newlinetwo, newlinethree, newlinefour];
         let sale = this.props.data.sale.sale_list;
         let config = this.props.data.layout.layout_list.config;
         let layout = this.handlePage(this.props.data.layout.layout_list.ddqGoodsList, 1);
         let { homebanner } = this.props.data.homebanner;
         let list_banner = homebanner;
-        if (list_banner.length == 0) {
+        if (list_banner.length === 0) {
             list_banner = '';
         }
 
@@ -151,8 +151,8 @@ class Home extends Component {
                                 <ol>
                                     {
                                         this.props.data.nav.nav_list.map((item, index) => (
-                                            <li key={index}>
-                                                <a href="">
+                                            <li key={index} onClick={this.handlepush.bind(this, index)}>
+                                                <a>
                                                     <div>
                                                         <img src={item.address} />
                                                         <span>{item.name}</span>
@@ -257,22 +257,22 @@ class Home extends Component {
                                 <div className="line">
                                     <h2>大家都在领</h2>
                                     <div className="real_coupon">
-                                            <WingBlank>
-                                                <Carousel className="my-carousel"
-                                                    vertical
-                                                    dots={false}
-                                                    autoplay={true}
-                                                    infinite={true}
-                                                    swiping={true}
-                                                >
-                                                    {
-                                                        this.props.data.discount.discount_list.map((item,index)=>(
-                                                            <div  className="v-item" key={index}>{item.tag}&nbsp;{item.name}</div>
-                                                        ))
-                                                    }
-                                                    
-                                                </Carousel>
-                                            </WingBlank>
+                                        <WingBlank>
+                                            <Carousel className="my-carousel"
+                                                vertical
+                                                dots={false}
+                                                autoplay={true}
+                                                infinite={true}
+                                                swiping={true}
+                                            >
+                                                {
+                                                    this.props.data.discount.discount_list.map((item, index) => (
+                                                        <div className="v-item" key={index}>{item.tag}&nbsp;{item.name}</div>
+                                                    ))
+                                                }
+
+                                            </Carousel>
+                                        </WingBlank>
                                     </div>
                                     <div className="swiper_div">
                                         {/* <div>
@@ -298,11 +298,11 @@ class Home extends Component {
                                                 {
                                                     this.state.data1.map((val, index) => (
                                                         <div key={val}>
-                                                          <div className="swiper_coupon_list" key={index}>
-                                                            {
-                                                                newline[index].map((item,index)=>(
+                                                            <div className="swiper_coupon_list" key={index}>
+                                                                {
+                                                                    newline[index].map((item, index) => (
                                                                         <a key={index}>
-                                                                            <img src={item.pic}/>
+                                                                            <img src={item.pic} />
                                                                             <p className="list_text">
                                                                                 {item.dtitle}
                                                                             </p>
@@ -311,10 +311,10 @@ class Home extends Component {
                                                                             </p>
                                                                             <span className="info ">即将领完</span>
                                                                         </a>
-                                                                ))
-                                                            }
+                                                                    ))
+                                                                }
 
-                                                           </div>
+                                                            </div>
                                                         </div>
                                                     ))
                                                 }
@@ -441,12 +441,31 @@ class Home extends Component {
 
         )
     }
-
+    handlepush(index) {//跳转
+        // alert(index)
+        switch (index) {
+            case 0://疯抢
+                this.props.history.push("/rankings")
+                break;
+            case 1://99包邮
+                this.props.history.push("/nine")
+                break;
+            case 2://品牌特卖
+                this.props.history.push("/samplesale")
+                break;
+            case 3://每日半价
+                this.props.history.push("/halfprice")
+                break;
+            case 4://折上折
+                this.props.history.push("/foldup")
+                break;
+        }
+    }
     handleTabClick(tabs) {
         console.log(tabs)
     }
 
-    handlePage(arr = [], pg = 1 ,li=4) {
+    handlePage(arr = [], pg = 1, li = 4) {
         let data = arr;
         let list = [], page = pg, limit = li;
 
