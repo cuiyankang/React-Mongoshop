@@ -2,6 +2,7 @@ import React, { Fragment } from "react"
 class Categoryeach extends React.Component {
     render() {
         let { activeIndex, fenlei } = this.props;
+        // console.log(fenlei)
         return (
             <Fragment>
                 {
@@ -13,7 +14,11 @@ class Categoryeach extends React.Component {
                                     <ul>
                                         {
                                             ite.list.map((i, d) => (
-                                                <li className="item" key={i.api_cid}>
+                                                <li 
+                                                className="item" 
+                                                key={i.api_cid}
+                                                onClick={this.handleClickId.bind(this,i.api_cid)}
+                                                >
                                                     <a>
                                                         <img src={i.img} />
                                                         <p>{i.name}</p>
@@ -29,6 +34,9 @@ class Categoryeach extends React.Component {
                 }
             </Fragment>
         )
+    }
+    handleClickId(id){
+        console.log(id)
     }
 }
 

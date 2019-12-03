@@ -233,7 +233,6 @@ class SampleSale extends React.Component {
                                                                 </div>
                                                                 <div className="saleNumber">{it.xiaoliangText}</div>
 
-
                                                             </div>
                                                         ))
                                                     }
@@ -255,7 +254,6 @@ class SampleSale extends React.Component {
     }
     handleDetails(it){
         console.log(it);
-        observer.$emit("handledataIt",it);
         this.props.history.push("/details")
     }
     handleClick(id) {

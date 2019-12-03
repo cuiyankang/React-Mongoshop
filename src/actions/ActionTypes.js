@@ -11,3 +11,7 @@ export const ChangeID = "CHANGE_ID";
 
 
 export const foldup="FOLD_UP"
+
+export const HandleSortList = "HANDLE_SORT_LIST"
+
+export const LoginData="LOGIN_DATA";

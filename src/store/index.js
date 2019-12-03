@@ -14,6 +14,7 @@ import foldup from "./reducers/foldup.js"
 import ranking from "./reducers/ranking.js"
 import half from "./reducers/half"
 import find from "./reducers/find.js"
+import sortList from "./reducers/sortList"
 import reduxThunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -33,7 +34,8 @@ const reducers = combineReducers({
     foldup,
     ranking,
     half,
-    find
+    find,
+    sortList,
 
 })
 

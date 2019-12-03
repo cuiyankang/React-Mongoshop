@@ -16,8 +16,6 @@ class Find extends Component {
         let dataArr = this.props.data.sampleSale.data;
         let data1 = this.props.data.sampleSale.data1;
         console.log(data1);
-
-
         return (
                 <Container>
                     <div className="freeShipping">
@@ -27,11 +25,8 @@ class Find extends Component {
                             <img src="https://cmsstatic.ffquan.cn//web/nine_special/images/nine_title.svg?v=201908292038" alt="" />
                             <div className="iconfont right">&#xe601;</div>
                         </div>
-
-
                         <div className="centerAll">
                             <div>
-
                                 {/* 固定区 */}
                                 <div className="main">
 
@@ -51,7 +46,6 @@ class Find extends Component {
                                                             <div className="liTopL">
                                                                 <div className="logo">
                                                                     <img src={item.brandLogo} alt="" />
-
                                                                 </div>
                                                                 <div className="details">{item.brandName}
                                                                     <span>{item.label}</span>
@@ -80,7 +74,6 @@ class Find extends Component {
                                                                         item.hotPush.map((it, idx) => (
                                                                             <div className="li" key={idx}>
                                                                                 <img src={it.pic} alt="" />
-
                                                                                 <div className="price">
                                                                                     <span className="newPrice">￥{it.jiage}</span>
                                                                                     <span className="oldPrice">￥{it.yuanjia}</span>
@@ -92,11 +85,9 @@ class Find extends Component {
                                                                                             <span key={ind}>{ite.val}</span>
                                                                                         )) : ""
                                                                                     }
-
                                                                                 </div>
                                                                                 <div className="saleNumber">{it.xiaoliangText}</div>
                                                                                 <div className="discount"><span>{it.sellDear}</span></div>
-
                                                                             </div>
                                                                         ))
                                                                     }
@@ -113,8 +104,6 @@ class Find extends Component {
                                     </div>
                                 </div>
                             </div>
-
-
                             {/* nav */}
                             <div className="nav">
                                 <a href="#">精选</a>
@@ -123,11 +112,7 @@ class Find extends Component {
                                         <a href="" key={item.id}>{item.title}</a>
                                     ))
                                 }
-
-
                             </div>
-
-                           
                             {/* 精彩推荐 */}
                             <div className="recommend">
                                 <div className="recommendTitle">
@@ -159,13 +144,10 @@ class Find extends Component {
                                                 </div>
                                             </li>
                                         )) : ""
-
                                     }
-
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </Container>
         )
@@ -173,14 +155,17 @@ class Find extends Component {
     handleJump() {
         this.props.history.goBack();
     }
+    // componentWillUpdate(){
+    //     this.refs.scroll.handlefinishPullUp();
+    // }
     componentDidMount() {
         this.props.handleGetOneData();
-
+        // this.props.handleWeekAsyncData(this.props.cityId,this.page);
+        // this.page++;
         this.props.handleAsyncSampleSale()
         let id = this.props.data.nine.data.cac_id;
         this.props.handleAsyncnine(id, this.page);
         this.page++;
-
     }
 }
 
