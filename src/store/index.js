@@ -8,6 +8,11 @@ import discount from "./reducers/discount.js"
 import layout from "./reducers/layout.js"
 import sale from "./reducers/sale.js"
 import line from "./reducers/line.js"
+import fenlei from "./reducers/fenlei.js"
+import sampleSale from "./reducers/sampleSale"
+import foldup from "./reducers/foldup.js"
+import ranking from "./reducers/ranking.js"
+import half from "./reducers/half"
 import reduxThunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -21,7 +26,13 @@ const reducers = combineReducers({
     discount,
     layout,
     sale,
-    line
+    line,
+    fenlei,
+    sampleSale,
+    foldup,
+    ranking,
+    half
+
 })
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(reduxThunk)));
