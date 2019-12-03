@@ -1,241 +1,66 @@
 import React from "react"
 
 import { Ranking, Header, Category, Container } from "./styled"
-
+import { withRouter } from 'react-router-dom'
+import { connect } from "react-redux"
+import { mapStateToProps, mapDispatchToProps } from "./mapStore"
+import RankingEachs from "./rankingEach"
+@connect(mapStateToProps, mapDispatchToProps)
+@withRouter
 class Rankings extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            activeIndex: "4"
+        }
+    }
     render() {
+        // console.log(this.props.data.ranking.rankinglist, 555)
+        let ranking = this.props.data.ranking.rankingbanner;
+        let list=this.props.data.ranking.rankinglist
+        let { activeIndex } = this.state;
         return (
             <Ranking>
                 <Header>
-                    <i className="iconfont left">&#xe606;</i>
+                    <i className="iconfont left" onClick={this.handleback.bind(this)}>&#xe605;</i>
                     <div className="logo"><img src="https://cmsstatic.ffquan.cn//wap_new/ranking/images/title.svg?v=201908292038" /></div>
-                    <i className="iconfont right">&#xe606;</i>
+                    <i className="iconfont right">&#xe63a;</i>
                 </Header>
                 <Category>
                     <div className="flex">
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
-                        <li className="item"><a>全天榜</a></li>
+                        {
+                            ranking.map((item, index) => (
+                                <li className="item" key={item.id} onClick={this.handleClick.bind(this, item.id)}><a className={activeIndex == item.id ? "active" : ""}>{item.title}</a></li>
+                            ))
+                        }
+
+
                     </div>
                 </Category>
                 <Container>
                     <div className="list">
-                        <div className="item_list">
-                            <span className="lv">NO.1</span>
-                            <div className="left">
-                                <img src="https://img.alicdn.com/imgextra/i2/317099518/O1CN01Nx6zJ22KBIJogtOOk_!!317099518.jpg_310x310.jpg" />
-                            </div>
-                            <div className="right">
-                                <h3>【NFF】樱桃淡化唇纹补水唇膜</h3>
-
-                                <p className="price">
-                                    <span className="Lately">近2小时疯抢</span>
-                                    <span className="many">3.7万</span>
-                                    <span className="piece">件</span>
-                                </p>
-                                <p className="price tianmao">天猫价: ¥8.9</p>
-
-                                <div className="right_text">
-                                    <span className="volume red">券后价 ¥ </span>
-                                    <span className="price_after red">6.9</span>
-                                    <span className="butt">立即抢</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item_list">
-                            <span className="lv">NO.1</span>
-                            <div className="left">
-                                <img src="https://img.alicdn.com/imgextra/i2/317099518/O1CN01Nx6zJ22KBIJogtOOk_!!317099518.jpg_310x310.jpg" />
-                            </div>
-                            <div className="right">
-                                <h3>【NFF】樱桃淡化唇纹补水唇膜</h3>
-
-                                <p className="price">
-                                    <span className="Lately">近2小时疯抢</span>
-                                    <span className="many">3.7万</span>
-                                    <span className="piece">件</span>
-                                </p>
-                                <p className="price tianmao">天猫价: ¥8.9</p>
-
-                                <div className="right_text">
-                                    <span className="volume red">券后价 ¥ </span>
-                                    <span className="price_after red">6.9</span>
-                                    <span className="butt">立即抢</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item_list">
-                            <span className="lv">NO.1</span>
-                            <div className="left">
-                                <img src="https://img.alicdn.com/imgextra/i2/317099518/O1CN01Nx6zJ22KBIJogtOOk_!!317099518.jpg_310x310.jpg" />
-                            </div>
-                            <div className="right">
-                                <h3>【NFF】樱桃淡化唇纹补水唇膜</h3>
-
-                                <p className="price">
-                                    <span className="Lately">近2小时疯抢</span>
-                                    <span className="many">3.7万</span>
-                                    <span className="piece">件</span>
-                                </p>
-                                <p className="price tianmao">天猫价: ¥8.9</p>
-
-                                <div className="right_text">
-                                    <span className="volume red">券后价 ¥ </span>
-                                    <span className="price_after red">6.9</span>
-                                    <span className="butt">立即抢</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item_list">
-                            <span className="lv">NO.1</span>
-                            <div className="left">
-                                <img src="https://img.alicdn.com/imgextra/i2/317099518/O1CN01Nx6zJ22KBIJogtOOk_!!317099518.jpg_310x310.jpg" />
-                            </div>
-                            <div className="right">
-                                <h3>【NFF】樱桃淡化唇纹补水唇膜</h3>
-
-                                <p className="price">
-                                    <span className="Lately">近2小时疯抢</span>
-                                    <span className="many">3.7万</span>
-                                    <span className="piece">件</span>
-                                </p>
-                                <p className="price tianmao">天猫价: ¥8.9</p>
-
-                                <div className="right_text">
-                                    <span className="volume red">券后价 ¥ </span>
-                                    <span className="price_after red">6.9</span>
-                                    <span className="butt">立即抢</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item_list">
-                            <span className="lv">NO.1</span>
-                            <div className="left">
-                                <img src="https://img.alicdn.com/imgextra/i2/317099518/O1CN01Nx6zJ22KBIJogtOOk_!!317099518.jpg_310x310.jpg" />
-                            </div>
-                            <div className="right">
-                                <h3>【NFF】樱桃淡化唇纹补水唇膜</h3>
-
-                                <p className="price">
-                                    <span className="Lately">近2小时疯抢</span>
-                                    <span className="many">3.7万</span>
-                                    <span className="piece">件</span>
-                                </p>
-                                <p className="price tianmao">天猫价: ¥8.9</p>
-
-                                <div className="right_text">
-                                    <span className="volume red">券后价 ¥ </span>
-                                    <span className="price_after red">6.9</span>
-                                    <span className="butt">立即抢</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item_list">
-                            <span className="lv">NO.1</span>
-                            <div className="left">
-                                <img src="https://img.alicdn.com/imgextra/i2/317099518/O1CN01Nx6zJ22KBIJogtOOk_!!317099518.jpg_310x310.jpg" />
-                            </div>
-                            <div className="right">
-                                <h3>【NFF】樱桃淡化唇纹补水唇膜</h3>
-
-                                <p className="price">
-                                    <span className="Lately">近2小时疯抢</span>
-                                    <span className="many">3.7万</span>
-                                    <span className="piece">件</span>
-                                </p>
-                                <p className="price tianmao">天猫价: ¥8.9</p>
-
-                                <div className="right_text">
-                                    <span className="volume red">券后价 ¥ </span>
-                                    <span className="price_after red">6.9</span>
-                                    <span className="butt">立即抢</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item_list">
-                            <span className="lv">NO.1</span>
-                            <div className="left">
-                                <img src="https://img.alicdn.com/imgextra/i2/317099518/O1CN01Nx6zJ22KBIJogtOOk_!!317099518.jpg_310x310.jpg" />
-                            </div>
-                            <div className="right">
-                                <h3>【NFF】樱桃淡化唇纹补水唇膜</h3>
-
-                                <p className="price">
-                                    <span className="Lately">近2小时疯抢</span>
-                                    <span className="many">3.7万</span>
-                                    <span className="piece">件</span>
-                                </p>
-                                <p className="price tianmao">天猫价: ¥8.9</p>
-
-                                <div className="right_text">
-                                    <span className="volume red">券后价 ¥ </span>
-                                    <span className="price_after red">6.9</span>
-                                    <span className="butt">立即抢</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item_list">
-                            <span className="lv">NO.1</span>
-                            <div className="left">
-                                <img src="https://img.alicdn.com/imgextra/i2/317099518/O1CN01Nx6zJ22KBIJogtOOk_!!317099518.jpg_310x310.jpg" />
-                            </div>
-                            <div className="right">
-                                <h3>【NFF】樱桃淡化唇纹补水唇膜</h3>
-
-                                <p className="price">
-                                    <span className="Lately">近2小时疯抢</span>
-                                    <span className="many">3.7万</span>
-                                    <span className="piece">件</span>
-                                </p>
-                                <p className="price tianmao">天猫价: ¥8.9</p>
-
-                                <div className="right_text">
-                                    <span className="volume red">券后价 ¥ </span>
-                                    <span className="price_after red">6.9</span>
-                                    <span className="butt">立即抢</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item_list">
-                            <span className="lv">NO.1</span>
-                            <div className="left">
-                                <img src="https://img.alicdn.com/imgextra/i2/317099518/O1CN01Nx6zJ22KBIJogtOOk_!!317099518.jpg_310x310.jpg" />
-                            </div>
-                            <div className="right">
-                                <h3>【NFF】樱桃淡化唇纹补水唇膜</h3>
-
-                                <p className="price">
-                                    <span className="Lately">近2小时疯抢</span>
-                                    <span className="many">3.7万</span>
-                                    <span className="piece">件</span>
-                                </p>
-                                <p className="price tianmao">天猫价: ¥8.9</p>
-
-                                <div className="right_text">
-                                    <span className="volume red">券后价 ¥ </span>
-                                    <span className="price_after red">6.9</span>
-                                    <span className="butt">立即抢</span>
-                                </div>
-                            </div>
-                        </div>
+                        <RankingEachs list={list?list:""} activeIndex={activeIndex} />
                     </div>
 
                 </Container>
             </Ranking>
         )
+    }
+    handleClick(id) {
+        this.setState({
+            activeIndex: id
+        })
+        this.componentDidMount(this.state.activeIndex?this.state.activeIndex:"4")
+        // console.log(this.state.activeIndex)
+    }
+    componentDidMount(id) {
+        // console.log(id ? id : "4", 66)
+        this.props.rankingbanner()
+        this.props.rankinglist(id ? id : "4")
+        // console.log(id, 88)
+    }
+    handleback() {
+        this.props.history.goBack()
     }
 }
 

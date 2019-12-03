@@ -124,7 +124,15 @@ export default class Home extends Component {
                             <div className="main_module_nav">
                                 <ol>
                                     <li>
-                                        <a href="">
+                                        <a>
+                                            <div>
+                                                <img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN0151LlXA2JJhyWrrtRw_!!2053469401.gif" alt="" />
+                                                <span>品牌特卖</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="http://localhost:3000/#/rankings">
                                             <div>
                                                 <img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN0151LlXA2JJhyWrrtRw_!!2053469401.gif" alt="" />
                                                 <span>疯抢排行</span>
@@ -132,34 +140,26 @@ export default class Home extends Component {
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="">
+                                        <a href="http://localhost:3000/#/foldup">
                                             <div>
                                                 <img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN0151LlXA2JJhyWrrtRw_!!2053469401.gif" alt="" />
-                                                <span>疯抢排行</span>
+                                                <span>折上折</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="">
+                                        <a>
                                             <div>
                                                 <img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN0151LlXA2JJhyWrrtRw_!!2053469401.gif" alt="" />
-                                                <span>疯抢排行</span>
+                                                <span>9.9包邮</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="">
+                                        <a href="http://localhost:3000/#/halfprice">
                                             <div>
                                                 <img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN0151LlXA2JJhyWrrtRw_!!2053469401.gif" alt="" />
-                                                <span>疯抢排行</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <div>
-                                                <img src="https://img.alicdn.com/imgextra/i1/2053469401/O1CN0151LlXA2JJhyWrrtRw_!!2053469401.gif" alt="" />
-                                                <span>疯抢排行</span>
+                                                <span>每日半价</span>
                                             </div>
                                         </a>
                                     </li>

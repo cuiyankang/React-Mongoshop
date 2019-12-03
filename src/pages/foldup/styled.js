@@ -35,7 +35,7 @@ export const Header=styled.div`
     i{
         text-align:center;
         color:#fff;
-        font-size:.35rem;
+        font-size:.45rem;
     }
 `
 
@@ -54,19 +54,20 @@ export const Category=styled.div`
        overflow-x: auto;
         &>.item{          
             height:.88rem;
-            width: 1.36rem;
+           padding:0 .2rem;
             display: inline-block;
             text-align: center;
             line-height: .8rem;
-            font-size: .36rem;
+            font-size: .35rem;
             a{
                 color: rgba(255,255,255,.6);
-                :active{
-                    border-bottom: 2px solid #fff;
+                
+            }
+            .active{
+                    border-bottom: .04rem solid #fff;
                     padding-bottom: 15px;
                     color:#fff;
                 }
-            }
         }
     }
 `
@@ -133,7 +134,7 @@ export const Container=styled.div`
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
-                    height: .46rem;
+                    /* height: .46rem; */
                     line-height: initial;
                     margin-bottom:.5rem
                 }

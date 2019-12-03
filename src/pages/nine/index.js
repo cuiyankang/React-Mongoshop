@@ -20,7 +20,6 @@ class Find extends Component {
 
 
         return (
-            <Bscroll ref="scroll">
                 <Container>
                     <div className="freeShipping">
                         {/* 头部 */}
@@ -170,7 +169,6 @@ class Find extends Component {
 
                     </div>
                 </Container>
-            </Bscroll>
         )
     }
     handleJump() {

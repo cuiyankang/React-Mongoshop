@@ -35,7 +35,7 @@ export const Header=styled.div`
     i{
         text-align:center;
         color:#fff;
-        font-size:.35rem;
+        font-size:.45rem;
     }
 `
 
@@ -55,18 +55,19 @@ export const Category=styled.div`
        overflow-x: auto;
         &>.item{          
             height:.88rem;
-            width: 1.36rem;
+          padding:0 .1rem;
             display: inline-block;
             text-align: center;
             line-height: .8rem;
             font-size: .32rem;
             a{
                 color: rgba(255,255,255,.6);
-                :active{
-                    border-bottom: 2px solid #fff;
-                    padding-bottom: 15px;
-                    color:#fff;
-                }
+                
+            }
+            .active{
+                border-bottom: .05rem solid #fff;
+                padding-bottom: 15px;
+                color:#fff;
             }
         }
     }

@@ -10,3 +10,4 @@ export const GetTwoData = "GET_TWO_DATA";
 export const ChangeID = "CHANGE_ID";
 
 
+export const foldup="FOLD_UP"
