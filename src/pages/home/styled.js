@@ -72,13 +72,17 @@ export const Header = styled.div`
                 padding-bottom: 0.08rem;
             }
         } 
+        .mulu{
+                color:#fff!important;
+                font-size:.35rem!important;
+        }
+
     }
     .tab_nav{
         width: 100%;
         height:0.58rem;
-        background: cyan;
         position: absolute;
-        bottom: 0;
+        bottom: 4px;
         padding:0 1rem;
         .am-whitespace{
             height:0px!important;
@@ -89,6 +93,12 @@ export const Header = styled.div`
         .am-tabs-default-bar-tab{
             height: 100%!important;
             font-size:0.3rem;
+        }
+        .am-tabs-default-bar-prevpage{
+            display:none!important;
+        }
+        .am-tabs-default-bar-nextpage{
+            display:none!important;
         }
     }
 
@@ -225,16 +235,17 @@ export const Main = styled.div`
         .top-line-right{
             width: 5.46rem;
             height: 0.42rem;
+            line-height: 0.42rem;
             .my-carousel .v-item {
-                height: 36px;
-                line-height: 36px;
+                height: 40px;
+                line-height: 40px;
                 padding-left: 10px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap
             }
         }
-
+      
         .main .display_window{
             width: 100%;
             display: flex;
@@ -349,12 +360,21 @@ export const Main = styled.div`
             background: #fff;
             border-radius: 0.1rem;
             padding:0.25rem 0.25rem 0 0.25rem;
+            .my-carousel .v-item {
+                height: 40px;
+                line-height: 40px;
+                padding-left: 10px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap
+            }
         }
         .line h2{
             font-size: 0.33rem;
         }
         .line .real_coupon{
             height: 0.48rem;
+            line-height:0.48rem;
             background: rgba(254,58,51,.1);
             border-radius: .21rem;
             margin: .25rem 0;
@@ -419,10 +439,16 @@ export const Main = styled.div`
             width: 100%;
         }
         .find_goods ul li {
-            width: 96%;
-            background: #fff;
+            float:left;
+            width: 49.2%;
+            height:5.62rem;
+            background: #fff;    
+            overflow: hidden;
             border-radius: 0.17rem;
             margin-bottom: 0.1rem;
+        }
+        li:nth-child(2n){
+            float:right!important;
         }
         .find_good_imgbox{
         }
@@ -445,7 +471,7 @@ export const Main = styled.div`
         .find_product_price{
             color: red;
             font-size: .25rem;
-            padding:0 .17rem;
+            padding: .17rem .17rem 0 .17rem;
         }
         .find_product_price span{
             color: red;
@@ -458,6 +484,11 @@ export const Main = styled.div`
             justify-content: space-between;
             padding:0 0.17rem;
             margin-top: 0.13rem;
+        }
+
+
+        .am-tabs-default-bar-content{
+            background: rgb(131,11,215);
         }
        
 `

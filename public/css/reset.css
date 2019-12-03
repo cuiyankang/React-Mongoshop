@@ -20,7 +20,11 @@ body,html{
     height: 100%;
     overflow: hidden;
 }
-
+body{
+    color: #333;
+    font: 12px PingFangSC-Regular,Hiragino Sans GB,sans-serif;
+    background: #fff;
+}
 #root{
     height: 100%;
 }

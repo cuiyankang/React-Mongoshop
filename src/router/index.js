@@ -12,6 +12,7 @@ import {
     List,
     SampleSale,
     Details,
+    City
 } from "pages"
 
 
@@ -113,6 +114,13 @@ export const NoTabBarRoute = [
    {
         path: "/halfprice",
         component: Halfprice,
+        meta: {
+        }
+    },
+
+    {
+        path: "/city",
+        component: City,
         meta: {
         }
     },

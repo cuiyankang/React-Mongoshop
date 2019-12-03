@@ -10,14 +10,18 @@ import {withRouter} from "react-router-dom"
 @withRouter
 
 class Order extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             activeIndex: "25"
+        }
+        if(this.props.location.query){
+            this.state.activeIndex = this.props.location.query;
         }
 
     }
     render() {
+        
         let fenlei = this.props.data.fenlei.data.data
         let { activeIndex } = this.state
         return (

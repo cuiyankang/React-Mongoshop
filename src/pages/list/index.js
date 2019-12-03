@@ -102,8 +102,6 @@ class List extends React.Component {
     handlesubmit() {
         this.setState({
             flag: !this.state.flag
-        },()=>{
-            this.refs.scroll.handlerefresh()
         })
     }
 }

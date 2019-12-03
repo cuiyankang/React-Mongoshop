@@ -16,5 +16,9 @@ module.exports = (app) => {
             "^/ajax": ""
         }
     }))
+    app.use("/api", proxy({
+    target: "http://39.97.33.178",//  城市接口url地址: /api/cityList
+        changeOrigin: true,
+    }))
 }
 

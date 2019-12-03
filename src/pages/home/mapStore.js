@@ -25,7 +25,7 @@ export const mapDispatchToProps = (dispatch)=>({
     handleAsyncLine(){
         dispatch(LineAction())
     },
-    handleAsyncfind(){
-        dispatch(findAction())
+    handleAsyncfind(page){
+        dispatch(findAction(page))
     }
 })

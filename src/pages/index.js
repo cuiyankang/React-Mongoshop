@@ -67,3 +67,9 @@ export const Details = Loadable({
     loader: () => import("./details"),
     loading: Loading
 })
+
+export const City = Loadable({
+    loader: () => import("./city"),
+    loading: Loading
+})
+

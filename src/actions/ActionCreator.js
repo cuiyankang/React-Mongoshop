@@ -1,4 +1,4 @@
-import { hotNine,SampleSale,GetOneData,GetTwoData,ChangeID,flodup } from "./ActionTypes"
+import { hotNine,SampleSale,GetOneData,GetTwoData,ChangeID } from "./ActionTypes"
 import { ListApi, categoryApi, foldupApi, folduplistApi, rankingApi, 
     rankinglistApi,halfApi,halflistApi,SampleSaleListApi,GetOneDataApi,GetTwoDataApi,ChangeIDApi,
     SearchApi,SearchToListApi,HomeBannerApi,
@@ -218,16 +218,15 @@ export const LineAction = ()=>{
 }
 
 
-export const findAction = ()=>{
+export const findAction = (page)=>{
     var homeFindAction = (data)=>({
         type:"HOME_FIND",
         data
     })
 
     return async (dispatch)=>{
-        let data = await FindApi();
-        console.log(data);
-        // dispatch(homeFindAction(data.data.config.list))        
+        let data = await FindApi(page);
+        dispatch(homeFindAction(data.data.list))        
     }
 }
 //疯抢导航

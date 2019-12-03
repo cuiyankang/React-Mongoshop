@@ -1,18 +1,6 @@
 
 import http from "utils/request";
 
-/*测试接口*/
-export const ListApi = () => http.get({
-        url: "/ajax/index.php",
-        data: {
-            r: "class/cyajaxsub",
-            page: 1,
-            cid: 22,
-            px: 't',
-            cac_id:''
-        }
-    })
-//http://www.mangguozhe.com/index.php?r=class%2Fcyajaxsub&page=1&cid=22&px=t&cac_id=
 
 
 /*搜索接口*/
@@ -150,10 +138,10 @@ export const LineApi = () => http.get({
 //entityId=4&modelId=13017&proModelId=16&source=3&version=v1&tuserId=797808&isWechat=0 
 
 
-export const FindApi = () => http.get({
+export const FindApi = (page) => http.get({
     url: "/ajaxone/api/category/index/lingquan-live-new",
     data: {
-        pageId:1,//页数
+        pageId:page,//页数
         pageSize:10,
         entityId:4,
         type:1,
