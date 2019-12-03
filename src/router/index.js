@@ -12,6 +12,8 @@ import {
     List,
     SampleSale,
     Details,
+    SortList,
+    Register,
 } from "pages"
 
 
@@ -73,6 +75,11 @@ export const NoTabBarRoute = [
         meta:{}
     },
     {
+        path:"/register",
+        component:Register,
+        meta:{}
+    },
+    {
         path:"/search",
         component:Search,
         meta:{}
@@ -113,6 +120,12 @@ export const NoTabBarRoute = [
    {
         path: "/halfprice",
         component: Halfprice,
+        meta: {
+        }
+    },
+    {
+        path: "/sortList",
+        component: SortList,
         meta: {
         }
     },

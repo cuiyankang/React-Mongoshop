@@ -1,19 +1,14 @@
 import React from "react";
 import {DetailsCSS} from "./styled";
 import {withRouter} from "react-router-dom";
-import observer from "../../observer";
 @withRouter
 class Details extends React.Component{
-    constructor(){
-        super();
-        // let dataTop=observer.$on("handledataIt",(dataTop)=>{
-        //     console.log(dataTop,22222);
-        //     return dataTop;
-        // })
+    constructor(props){
+        super(props);
         
     }
+    
     render(){
-        // console.log(this.state.dataTop,4444);
         return (
             <DetailsCSS>
                 <img className="topImg" src="https://img.alicdn.com/imgextra/i4/93498899/O1CN01JNye6o2Fbn9Q2T8X2_!!93498899.jpg_480x480.jpg" alt=""/>

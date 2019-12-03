@@ -16,5 +16,13 @@ module.exports = (app) => {
             "^/ajax": ""
         }
     }))
+    app.use("/ajaxlogin", proxy({
+        target: "http://39.105.204.151:3000",
+        changeOrigin: true,
+        pathRewrite: {
+            "^/ajaxlogin": ""
+        }
+    }))
+    
 }
 

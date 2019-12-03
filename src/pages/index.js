@@ -44,6 +44,11 @@ export const Login = Loadable({
     loading: Loading
 })
 
+export const Register = Loadable({
+    loader: () => import("./register"),
+    loading: Loading
+})
+
 export const Collect = Loadable({
     loader: () => import("./collect"),
     loading: Loading
@@ -67,3 +72,10 @@ export const Details = Loadable({
     loader: () => import("./details"),
     loading: Loading
 })
+
+
+export const SortList = Loadable({
+    loader: () => import("./sortList"),
+    loading: Loading
+})
+

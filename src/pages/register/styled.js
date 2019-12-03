@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoginCSS = styled.div`
+export const RegisterCSS = styled.div`
     height:100%;width:100%;    font-family: Arial,Helvetica,sans-serif,"Microsoft YaHei";
     background:#fff;
     .top{

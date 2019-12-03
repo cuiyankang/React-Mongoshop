@@ -1,15 +1,23 @@
 import React, { Fragment } from "react"
+import observer from "../../observer"
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
+@withRouter
 
 class RankingEachs extends React.Component {
+    constructor(){
+        super();
+        
+    }
     render() {
         // console.log(this.props)
         let { list, activeIndex } = this.props
-        console.log(list, activeIndex, 888)
+        // console.log(list, activeIndex, 888)
         return (
             <Fragment>
                 {
                     list ? list.map((item, index) => (
-                        <div className="item_list" key={item.id}>
+                        <div className="item_list" key={item.id} onClick={this.handleClickData.bind(this,item)}>
                             <span className="lv">NO.1</span>
                             <div className="left">
                                 <img src={item.pic} />
@@ -35,6 +43,9 @@ class RankingEachs extends React.Component {
 
             </Fragment>
         )
+    }
+    handleClickData(item){
+        
     }
 }
 
