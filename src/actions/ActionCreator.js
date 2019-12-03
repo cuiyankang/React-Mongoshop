@@ -1,5 +1,5 @@
-import { hotNine } from "./ActionTypes"
-import { ListApi, categoryApi, foldupApi, folduplistApi, rankingApi, rankinglistApi,halfApi,halflistApi } from "../api/hub";
+import { hotNine,SampleSale,GetOneData,GetTwoData,ChangeID,flodup } from "./ActionTypes"
+import { ListApi, categoryApi, foldupApi, folduplistApi, rankingApi, rankinglistApi,halfApi,halflistApi,SampleSaleListApi,GetOneDataApi,GetTwoDataApi,ChangeIDApi } from "../api/hub";
 
 //九块九
 export const categoryAsyncAction = () => {

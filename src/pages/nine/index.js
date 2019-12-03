@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "./mapStore"
 import { Container } from "./styled"
-import Bscroll from "common/bscroll"
 import { withRouter } from "react-router-dom"
 @connect(mapStateToProps, mapDispatchToProps)
 @withRouter
@@ -174,9 +173,6 @@ class Find extends Component {
     handleJump() {
         this.props.history.goBack();
     }
-    componentWillUpdate() {
-        this.refs.scroll.handlefinishPullUp();
-    }
     componentDidMount() {
         this.props.handleGetOneData();
 
@@ -185,12 +181,6 @@ class Find extends Component {
         this.props.handleAsyncnine(id, this.page);
         this.page++;
 
-        this.refs.scroll.handlepullingUp(() => {
-            let page = this.page;
-            let id = this.props.data.nine.data.cac_id;
-            this.props.handleAsyncnine(id, page);
-            this.page++;
-        })
     }
 }
 
