@@ -30,3 +30,13 @@ export const Collect = Loadable({
     loader: () => import("./collect"),
     loading: Loading
 })
+
+export const Search = Loadable({
+    loader: () => import("./search"),
+    loading: Loading
+})
+
+export const List = Loadable({
+    loader: () => import("./list"),
+    loading: Loading
+})

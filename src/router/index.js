@@ -4,7 +4,9 @@ import {
     Sort,
     Collect,
     Mine,
-    Login
+    Login,
+    Search,
+    List
 } from "pages"
 
 
@@ -62,6 +64,16 @@ export const NoTabBarRoute = [
     {
         path:"/login",
         component:Login,
+        meta:{}
+    },
+    {
+        path:"/search",
+        component:Search,
+        meta:{}
+    },
+    {
+        path:"/list",
+        component:List,
         meta:{}
     }
 ];

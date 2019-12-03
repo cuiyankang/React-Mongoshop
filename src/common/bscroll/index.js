@@ -1,6 +1,7 @@
 import React, { Component} from 'react'
 import BScroll from "better-scroll"
 import {Bswrapper} from "./styled"
+
 export default class BscrollCom extends Component {
     render() {
         return (
@@ -13,7 +14,20 @@ export default class BscrollCom extends Component {
         this.scroll = new BScroll(this.refs.wrapper,{
             pullUpLoad:true,
             click:true,
-            tap:true
+            tap:true,
+            mouseWheel: true
         });
+    }
+    handlepullingUp(callback){
+        this.scroll.on("pullingUp",()=>{
+            callback();
+        })
+    }
+    handlefinishPullUp(){
+        this.scroll.finishPullUp();
+        this.scroll.refresh();
+    }
+    handlerefresh(){
+        this.scroll.refresh();
     }
 }

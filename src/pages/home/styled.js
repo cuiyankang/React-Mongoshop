@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Header = styled.div`
     height: 1.5rem;
-    background: red;
     position: relative;
+    background: rgb(131, 11, 215);
     .header_pr{
         height: 0.88rem;
         border-bottom: 1px solid #000;
@@ -63,7 +63,7 @@ export const Header = styled.div`
             text-align: center;
             position: relative;
             z-index: 1;
-            background: chocolate;
+            background: rgb(131, 11, 215);
         }
         .left{
             span{
@@ -80,6 +80,16 @@ export const Header = styled.div`
         position: absolute;
         bottom: 0;
         padding:0 1rem;
+        .am-whitespace{
+            height:0px!important;
+        }
+        .am-tabs-tab-bar-wrap {
+            height: 100%!important;
+        }
+        .am-tabs-default-bar-tab{
+            height: 100%!important;
+            font-size:0.3rem;
+        }
     }
 
 `
@@ -92,11 +102,11 @@ export const Main = styled.div`
         bottom: 1.08rem;
         left: 0;
         right: 0;
-            
+        overflow:auto;
         .main{
             height: auto;
             min-height: 10.79rem;
-            background: #F6F6F6;
+            background: rgb(131, 11, 215)
         }
         .main .banner{
             padding:0 0.11rem;
@@ -108,10 +118,9 @@ export const Main = styled.div`
             width: 100%;
             height: 100%;
         }
-        .banner_img img{
+        .banner_img  img{
             width: 100%;
             height: 100%;
-            border-radius: 10px;
         }
 
 
@@ -216,6 +225,14 @@ export const Main = styled.div`
         .top-line-right{
             width: 5.46rem;
             height: 0.42rem;
+            .my-carousel .v-item {
+                height: 36px;
+                line-height: 36px;
+                padding-left: 10px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap
+            }
         }
 
         .main .display_window{
@@ -341,6 +358,12 @@ export const Main = styled.div`
             background: rgba(254,58,51,.1);
             border-radius: .21rem;
             margin: .25rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .line .swiper_div{
             width:100%;
@@ -349,7 +372,7 @@ export const Main = styled.div`
         .swiper_div div{
             height: 3.63rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
         }
         .swiper_div .swiper_coupon_list{

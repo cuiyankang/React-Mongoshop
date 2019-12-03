@@ -8,4 +8,12 @@ module.exports = (app)=>{
             "^/ajax":""
         }
     }))
+    app.use("/ajaxImg",proxy({
+        target:"http://cmsjapi.ffquan.cn",
+        changeOrigin:true,
+        pathRewrite:{
+            "^/ajaxImg":""
+        }
+    }))
 }
+
