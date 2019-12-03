@@ -35,7 +35,7 @@ export const Header = styled.div`
     i{
         text-align:center;
         color:#fff;
-        font-size:.35rem;
+        font-size:.45rem;
     }
 `
 
@@ -59,15 +59,12 @@ export const Category = styled.div`
             display: inline-block;
             text-align: center;
             font-size: .32rem;
+            
             a{
                 color: rgba(255,255,255,.6);
                 height:100%;
                 width:100%;
-                :active{
-                    border-bottom: 2px solid #fff;
-                    padding-bottom: 15px;
-                    color:#fff;
-                }
+                display:block;
                 span{
                     font-size: .35rem;
                     line-height: .45rem;
@@ -76,8 +73,20 @@ export const Category = styled.div`
                     font-size:.2rem
                 }
             }
+           
+            
         }
+        .active{
+            font-size:.35rem;
+            color:#fff!important;
+        }
+        .weight{
+            font-weight:600;
+        }
+        
+        
     }
+    
 `
 
 

@@ -5,8 +5,9 @@ import { Sort, Header, Container } from "./styled"
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "./mapStore"
 import Categoryeach from "./rightEach";
+import {withRouter} from "react-router-dom"
 @connect(mapStateToProps, mapDispatchToProps)
-
+@withRouter
 
 class Order extends Component {
     constructor() {
@@ -19,13 +20,11 @@ class Order extends Component {
     render() {
         let fenlei = this.props.data.fenlei.data.data
         let { activeIndex } = this.state
-        // console.log(activeIndex, 555)
-        // console.log(fenlei, 999)
         return (
             <PageContainer>
                 <Sort>
                     <Header>
-                        <i className="iconfont back">&#xe605;</i>
+                        <i className="iconfont back" onClick={this.handleClickback.bind(this)}>&#xe605;</i>
                         <div className="input">
                             <i className="iconfont search">&#xe60d;</i>
                             <input type="text" defaultValue="输入商品名和粘贴宝贝标题搜索" />
@@ -55,6 +54,9 @@ class Order extends Component {
             </PageContainer>
         )
 
+    }
+    handleClickback(){
+        this.props.history.goBack()
     }
     componentDidMount() {
         this.props.handlecategoryAsyncData()

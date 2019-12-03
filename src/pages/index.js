@@ -6,6 +6,24 @@ export const Home = Loadable({
     loading: Loading
 })
 
+//疯抢排行
+export const Rankings = Loadable({
+    loader: () => import("./Rankings"),
+    loading: Loading
+})
+
+//折上折
+export const Foldup = Loadable({
+    loader: () => import("./foldup"),
+    loading: Loading
+})
+
+//每日半价
+export const Halfprice = Loadable({
+    loader: () => import("./halfprice"),
+    loading: Loading
+})
+
 export const Nine = Loadable({
     loader: () => import("./nine"),
     loading: Loading

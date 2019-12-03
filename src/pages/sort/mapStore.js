@@ -6,7 +6,7 @@ export const mapStateToProps=(state)=>({
 
 export const mapDispatchToProps=(dispatch)=>({
     handlecategoryAsyncData(){
-        console.log(111)
+        // console.log(111)
         dispatch(fenleiAsyncAction())
     }
 })
