@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
-
 import { connect } from "react-redux";
 import { mapStateToProps, mapDispatchToProps } from "./mapStore"
 import { Container } from "./styled"
 import Bscroll from "common/bscroll"
+import { withRouter } from "react-router-dom"
 @connect(mapStateToProps, mapDispatchToProps)
-
+@withRouter
 class Find extends Component {
-    constructor(){
+    constructor() {
         super();
-        this.page=0;
+        this.page = 0;
     }
     render() {
-        console.log(this.props, 6666)
+        console.log(this.props.data.sampleSale.data, 520);
         let data = this.props.data.nine.data.data;
+        let dataArr = this.props.data.sampleSale.data;
+        let data1 = this.props.data.sampleSale.data1;
+        console.log(data1);
+
 
         return (
             <Bscroll ref="scroll">
@@ -21,213 +25,111 @@ class Find extends Component {
                     <div className="freeShipping">
                         {/* 头部 */}
                         <div className="header">
-                            <div className="iconfont icon">&#xe605;</div>
+                            <div className="iconfont icon" onClick={this.handleJump.bind(this)}>&#xe605;</div>
                             <img src="https://cmsstatic.ffquan.cn//web/nine_special/images/nine_title.svg?v=201908292038" alt="" />
                             <div className="iconfont right">&#xe601;</div>
                         </div>
 
 
                         <div className="centerAll">
+                            <div>
 
-                            {/* 固定区 */}
-                            <div className="main">
-                                <div className="main1">
-                                    <div className="mainLeft">
-                                        <div className="mainLeftT">9.9每日精选</div>
-                                        <div className="mainCenter">十元封顶</div>
-                                    </div>
-                                    <div className="mainRight">
-                                        <div className="mainRightT">9.9每日</div>
-                                        <div className="mainRightC">十元封顶</div>
-                                    </div>
-                                    <div className="mainRight">
-                                        <div className="mainRightT">9.9每日</div>
-                                        <div className="mainRightC">十元封顶</div>
+                                {/* 固定区 */}
+                                <div className="main">
+
+                                    <div>
+                                        <div className="mainTitle">
+                                            {
+                                                data1.mainTitle ?
+                                                    <div><h2>{data1.mainTitle}</h2>
+                                                        <p>{data1.subTitle}</p></div> : ""
+                                            }
+                                        </div>
+                                        {
+                                            data1.brandDTOS ? data1.brandDTOS.map((item, index) => (
+                                                <ul key={item.brandId}>
+                                                    <li>
+                                                        <div className="liTop">
+                                                            <div className="liTopL">
+                                                                <div className="logo">
+                                                                    <img src={item.brandLogo} alt="" />
+
+                                                                </div>
+                                                                <div className="details">{item.brandName}
+                                                                    <span>{item.label}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="liTopR">
+                                                                <div className="timeDetails">仅剩&nbsp;</div>
+                                                                <div className="time">12:19:15</div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="liCenter">
+                                                            <div className="bj">
+
+                                                                <div className="center">
+                                                                    <div>{item.longProfit}</div>
+                                                                    <div>{item.selfProfit}</div>
+                                                                    <div>已售{(item.recentSale / 10000).toFixed(1)}万件</div>
+                                                                </div>
+                                                                <div className="position">{(item.fansNum / 10000).toFixed(1)}w人关注</div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="liBottom">
+                                                            <div className="center1">
+                                                                <div>
+                                                                    {
+                                                                        item.hotPush.map((it, idx) => (
+                                                                            <div className="li" key={idx}>
+                                                                                <img src={it.pic} alt="" />
+
+                                                                                <div className="price">
+                                                                                    <span className="newPrice">￥{it.jiage}</span>
+                                                                                    <span className="oldPrice">￥{it.yuanjia}</span>
+                                                                                </div>
+                                                                                <div className="tag">
+                                                                                    <img src="//cmsstatic.ffquan.cn//wap_new/brand/images/ju.png" alt="" />
+                                                                                    {
+                                                                                        it.goodsLabels ? it.goodsLabels.map((ite, ind) => (
+                                                                                            <span key={ind}>{ite.val}</span>
+                                                                                        )) : ""
+                                                                                    }
+
+                                                                                </div>
+                                                                                <div className="saleNumber">{it.xiaoliangText}</div>
+                                                                                <div className="discount"><span>{it.sellDear}</span></div>
+
+                                                                            </div>
+                                                                        ))
+                                                                    }
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            )) : ""
+
+                                        },
                                     </div>
                                 </div>
-                                <div className="main1">
-                                    <div className="mainLeft">
-                                        <div className="mainLeftT">9.9每日精选</div>
-                                        <div className="mainCenter">十元封顶</div>
-                                    </div>
-                                    <div className="mainRight">
-                                        <div className="mainRightT">9.9每日</div>
-                                        <div className="mainRightC">十元封顶</div>
-                                    </div>
-                                    <div className="mainRight">
-                                        <div className="mainRightT">9.9每日</div>
-                                        <div className="mainRightC">十元封顶</div>
-                                    </div>
-                                </div>
-
                             </div>
 
 
                             {/* nav */}
                             <div className="nav">
                                 <a href="#">精选</a>
-                                <a href="#">精选</a>
-                                <a href="#">精选</a>
-                                <a href="#">精选</a>
-                                <a href="#">精选</a>
-                                <a href="#">精选</a>
-                                <a href="#">精选</a>
-                                <a href="#">精选</a>
-                                <a href="#">精选</a>
-                                <a href="#">精选</a>
-                                <a href="#">精选</a>
+                                {
+                                    dataArr.map((item, index) => (
+                                        <a href="" key={item.id}>{item.title}</a>
+                                    ))
+                                }
 
 
                             </div>
 
-                            {/* slider */}
-
-                            <div className="slider">
-                                <div className="sliderTitle">
-                                    <img src="./img/leftDian.gif" />
-                                    <p>近一小时疯抢</p>
-                                    <img src="./img/rightDian.gif" />
-                                </div>
-                                <ul>
-
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <div className="more">
-                                        <img src="./img/more.gif" alt="" />
-                                        <div className="allShop">共50件商品</div>
-                                        <div className="tiaozhuan">></div>
-                                    </div>
-                                    <div>&nbsp;</div>
-
-                                </ul>
-                            </div>
-                            <div className="slider">
-                                <div className="sliderTitle">
-                                    <img src="./img/leftDian.gif" />
-                                    <p>近一小时疯抢</p>
-                                    <img src="./img/rightDian.gif" />
-                                </div>
-                                <ul>
-
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div className="slider">
-                                <div className="sliderTitle">
-                                    <img src="./img/leftDian.gif" />
-                                    <p>近一小时疯抢</p>
-                                    <img src="./img/rightDian.gif" />
-                                </div>
-                                <ul>
-
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div className="slider">
-                                <div className="sliderTitle">
-                                    <img src="./img/leftDian.gif" />
-                                    <p>近一小时疯抢</p>
-                                    <img src="./img/rightDian.gif" />
-                                </div>
-                                <ul>
-
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-                                    <li>
-                                        <img src="https://img.alicdn.com/bao/uploaded/TB1uFI8bW61gK0jSZFlXXXDKFXa.png_310x310.jpg" alt="" />
-                                        <p className="saleNumber">疯抢 12798 件</p>
-                                        <p className="priceSpeed">秒杀价6.9元！漫花白色抽纸</p>
-                                        <p className="saleMoney">￥6.9</p>
-                                    </li>
-
-                                </ul>
-                            </div>
+                           
                             {/* 精彩推荐 */}
                             <div className="recommend">
                                 <div className="recommendTitle">
@@ -252,9 +154,9 @@ class Find extends Component {
                                                     </div>
                                                     <div className="coupon"><span>券</span>{item.quan_jine}元</div>
                                                     <div className="comment">
-                                                        <span>已售{item.xiaoliang}万</span>
+                                                        <span>已售{(item.xiaoliang / 10000).toFixed(1)}万</span>
                                                         <span>|</span>
-                                                        <span>评论{item.comment}万</span>
+                                                        <span>评论{(item.comment / 10000).toFixed(1)}万</span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -271,11 +173,26 @@ class Find extends Component {
             </Bscroll>
         )
     }
-    componentWillUpdate(){
-        
+    handleJump() {
+        this.props.history.goBack();
+    }
+    componentWillUpdate() {
+        this.refs.scroll.handlefinishPullUp();
     }
     componentDidMount() {
-        this.props.handleAsyncnine(this.page);
+        this.props.handleGetOneData();
+
+        this.props.handleAsyncSampleSale()
+        let id = this.props.data.nine.data.cac_id;
+        this.props.handleAsyncnine(id, this.page);
+        this.page++;
+
+        this.refs.scroll.handlepullingUp(() => {
+            let page = this.page;
+            let id = this.props.data.nine.data.cac_id;
+            this.props.handleAsyncnine(id, page);
+            this.page++;
+        })
     }
 }
 

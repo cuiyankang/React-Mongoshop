@@ -1,18 +1,19 @@
 import React from "react";
 import {LoginCSS} from "./styled";
-
+import {withRouter} from "react-router-dom";
+@withRouter
 class Login extends React.Component{
     constructor(){
         super();
 
     }
     render(){
-
+        console.log(this.props,555);
         return (
             <LoginCSS>
                 <div className="top">
                     <div className="header">
-                        <div className="iconfont icon">&#xe605;</div>
+                        <div className="iconfont icon" onClick={this.handleJump.bind(this)}>&#xe605;</div>
                         <div>登录</div>
                         <div className="right">&nbsp;</div>
                     </div>
@@ -38,6 +39,9 @@ class Login extends React.Component{
                 </div>
             </LoginCSS>
         )
+    }
+    handleJump(){
+        this.props.history.goBack();
     }
 
 

@@ -30,3 +30,13 @@ export const Collect = Loadable({
     loader: () => import("./collect"),
     loading: Loading
 })
+
+export const SampleSale = Loadable({
+    loader: () => import("./sampleSale"),
+    loading: Loading
+})
+
+export const Details = Loadable({
+    loader: () => import("./details"),
+    loading: Loading
+})

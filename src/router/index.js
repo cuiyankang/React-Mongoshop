@@ -4,7 +4,9 @@ import {
     Sort,
     Collect,
     Mine,
-    Login
+    Login,
+    SampleSale,
+    Details,
 } from "pages"
 
 
@@ -15,6 +17,7 @@ export const TabBarRoute = [
         meta:{
             flag:true
         },
+        
         icon:"\ue606",
         text:"首页"
     },
@@ -54,7 +57,8 @@ export const TabBarRoute = [
         },
         icon:"\ue62f",
         text:"我的"
-    }
+    },
+    
 ];
 
 
@@ -63,7 +67,22 @@ export const NoTabBarRoute = [
         path:"/login",
         component:Login,
         meta:{}
-    }
+    },
+    {
+        path:"/samplesale",
+        component:SampleSale,
+        meta:{
+            flag:true
+        },
+    },
+    {
+        path:"/details",
+        component:Details,
+        meta:{
+            flag:true,
+            // requiredAuth:true
+        },
+    },
 ];
 
 

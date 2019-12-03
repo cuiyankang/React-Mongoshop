@@ -26,15 +26,18 @@ export const SampleSaleCSS = styled.div`
         font-weight:bold;
     }
     .icon{
-        margin-left:.15rem;
+        margin-left:.15rem;font-size:.3rem;
     }
     .kong{
         margin-right:.15rem;
     }
     .nav{
-        height:.9rem;width:100%;
-        a{
-            line-height:.9rem;color:rgba(255,255,255,0.6);font-size:.28rem;padding:0 .34rem;
+        height:.9rem;width:100%;white-space:nowrap;overflow:auto;
+        >div{
+            width:290%;
+        }
+        span{
+            line-height:.8rem;color:rgba(255,255,255,0.6);font-size:.28rem;padding:0 .34rem; float:left;
         }
     }
     .main{
@@ -122,10 +125,13 @@ export const SampleSaleCSS = styled.div`
     }
     .center1{
         padding:.2rem .2rem 0;
-        height:4.34rem;display:flex;justify-content:space-between;align-items:center;
+        height:4.34rem;display:flex;justify-content:space-between;align-items:center;overflow:auto;
+        >div{
+            width:200%;display:flex;justify-content:center;align-items:center;
+        }
     }
     .li{
-        width:2.12rem;height:100%;display:flex;flex-direction:column; justify-content:space-between;align-items:center;
+        width:2.3rem;height:100%;display:flex;flex-direction:column; justify-content:center;align-items:center;padding:0 .2rem 0;overflow:hidden;
         img{
             height:2.02rem;width:2.02rem;
         }
@@ -134,18 +140,18 @@ export const SampleSaleCSS = styled.div`
         margin-bottom:.08rem;width:100%;margin-top:.2rem;
     }
     .newPrice{
-        color:#ff3b32;font-size:.32rem;margin-right:.18rem;
+        color:#ff3b32;font-size:.32rem;margin-right:.18rem;margin-left:.1rem;
     }
     .oldPrice{
         color:#aaa;font-size:.22rem;text-decoration:line-through;
     }
     .tag{
-        width:100%;
+        width:100%;margin-left:.1rem;
         img{
-            height:.26rem;width:.36rem;margin-right:.08rem;display:inline-block;
+            height:.26rem;width:.26rem;margin-right:.08rem;display:inline-block;
         }
         span{
-            font-size:.12rem; border:1px solid #fe3a33;color:#fe3a33;padding:0 .1rem; border-radius:.06rem;
+            font-size:.18rem; border:1px solid #fe3a33;color:#fe3a33;padding:0 .1rem; border-radius:.06rem;
         }
     }
     .saleNumber{
@@ -154,8 +160,12 @@ export const SampleSaleCSS = styled.div`
     .discount{
         width:100%;margin-top:.12rem;margin-bottom:.1rem;
         span{
-            color:#f57523;font-size:.22rem;background: rgba(245,166,35,.2);height:.3rem;padding:0 .12rem;
+            color:#f57523;font-size:.22rem;background: rgba(245,166,35,.2);height:.3rem;padding:0 .12rem;white-space:nowrap;width:100%;overflow:hidden;
+            text-overflow: ellipsis;
         }
+    }
+    .active{
+        color:rgba(255,255,255,1) !important;border-bottom:2px solid #fff;font-weight:900;
     }
     
 

@@ -11,16 +11,16 @@ import http from "utils/request";
 
 
 
-export const ListApi = () => http.get({
-        url: "/ajax/index.php",
-        data: {
-            r: "nine/listajax",
-            n_id:58,
-            page: 1,
-            cac_id:''
-        }
-    })
-//http://www.mangguozhe.com/index.php?r=class%2Fcyajaxsub&page=1&cid=22&px=t&cac_id=
+export const ListApi = (id="",page=1) => http.get({
+    url: "/ajax/index.php",
+    data: {
+        r: "nine/listajax",
+        n_id:58,
+        page: page,
+        cac_id:id,
+    }
+})
+//http://www.mangguozhe.com/index.php?r=nine/listajax&n_id=58&page=1&cac_id=
 
 
 export const categoryApi = () => http.get({
@@ -28,5 +28,37 @@ export const categoryApi = () => http.get({
     data: {
         r: "class/category",
         type:1
+    }
+})
+
+export const SampleSaleListApi = () => http.get({
+    url: "/ajaxone/api/goods/category-brand-list",
+    data:{
+
+    }
+})
+
+
+
+export const GetOneDataApi = () => http.get({
+    url: "/ajaxone/api/tb-service/get-one-data",
+    data:{
+
+    }
+})
+
+
+export const GetTwoDataApi = () => http.get({
+    url: "/ajaxone/api/tb-service/get-two-data",
+    data:{
+
+    }
+})
+
+
+export const ChangeIDApi = (id) => http.get({
+    url: "/ajaxone/api/tb-service/brand-list-by-category-id",
+    data:{
+        typeId:id
     }
 })

@@ -16,4 +16,13 @@ export default class BscrollCom extends Component {
             tap:true
         });
     }
+    handlepullingUp(callback){
+        this.scroll.on("pullingUp",()=>{
+            callback();
+        })
+    }
+    handlefinishPullUp(){
+        this.scroll.finishPullUp();
+        this.scroll.refresh();
+    }
 }

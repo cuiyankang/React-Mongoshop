@@ -8,4 +8,11 @@ module.exports = (app)=>{
             "^/ajax":""
         }
     }))
+    app.use("/ajaxone",proxy({
+        target:"http://cmsjapi.ffquan.cn",
+        changeOrigin:true,
+        pathRewrite:{
+            "^/ajaxone":""
+        }
+    }))
 }
