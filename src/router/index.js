@@ -54,7 +54,7 @@ export const TabBarRoute = [
         meta: {
             
         },
-        icon: "\ue600",
+        icon: "\ue501",
         text: "购物车"
     },
     // {

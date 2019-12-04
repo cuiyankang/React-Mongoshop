@@ -313,3 +313,4 @@ export const RegisterDataAction = (user,pass) => {
         dispatch(getAsyncAction(data))
     }
 }
+
