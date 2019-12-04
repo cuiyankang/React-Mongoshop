@@ -84,3 +84,7 @@ export const SortList = Loadable({
     loading: Loading
 })
 
+export const ShoppingCart = Loadable({
+    loader: () => import("./shoppingCart"),
+    loading: Loading
+})

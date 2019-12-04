@@ -15,7 +15,8 @@ import {
     City,
     SortList,
     Register,
-} from "pages"
+    ShoppingCart,
+} from "pages" 
 
 
 export const TabBarRoute = [
@@ -48,14 +49,23 @@ export const TabBarRoute = [
         text: "分类"
     },
     {
-        path: "/collect",
-        component: Collect,
+        path: "/shoppingcart",
+        component: ShoppingCart,
         meta: {
-            flag: true
+            
         },
-        icon: "\ue501",
+        icon: "\ue600",
         text: "购物车"
     },
+    // {
+    //     path: "/collect",
+    //     component: Collect,
+    //     meta: {
+    //         flag: true
+    //     },
+    //     icon: "\ue600",
+    //     text: "收藏"
+    // },
     {
         path: "/mine",
         component: Mine,
@@ -137,6 +147,8 @@ export const NoTabBarRoute = [
         meta: {
         }
     },
+
+    
 
 ];
 
