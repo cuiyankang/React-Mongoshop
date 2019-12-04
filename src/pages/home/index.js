@@ -99,7 +99,7 @@ class Home extends Component {
                                 <div className="wap_search">
                                     <span className="palaceholder">
                                         输入商品名或粘贴宝贝标题搜索
-                                    </span>
+                                </span>
                                 </div>
                             </a>
                             <div className="header-info">
@@ -120,15 +120,15 @@ class Home extends Component {
                         <div className="tab_nav">
                             <div>
                                 <WhiteSpace />
-                                <Tabs tabs={tabs} renderTabBar={ props => <Tabs.DefaultTabBar {...props} 
-                                                            page={4} 
-                                                            tabBarBackgroundColor="rgb(131,11,215)"
-                                                            tabBarUnderlineStyle={{border:'none'}}
-                                                            tabBarActiveTextColor="#fff"
-                                                            onTabClick={this.handleTab}
-                                                            tabBarInactiveTextColor="rgba(255,255,255,.65)"
-                                                            tabBarTextStyle={{fontWeight:"bold"}}
-                                                    />}
+                                <Tabs tabs={tabs} renderTabBar={props => <Tabs.DefaultTabBar {...props}
+                                    page={4}
+                                    tabBarBackgroundColor="rgb(131,11,215)"
+                                    tabBarUnderlineStyle={{ border: 'none' }}
+                                    tabBarActiveTextColor="#fff"
+                                    onTabClick={this.handleTab}
+                                    tabBarInactiveTextColor="rgba(255,255,255,.65)"
+                                    tabBarTextStyle={{ fontWeight: "bold" }}
+                                />}
                                 >
                                 </Tabs>
                                 <WhiteSpace />
@@ -184,8 +184,8 @@ class Home extends Component {
                                     <ol>
                                         {
                                             this.props.data.nav.nav_list.map((item, index) => (
-                                                <li key={index}>
-                                                    <a href="">
+                                                <li key={index} >
+                                                    <a onClick={this.handlepush.bind(this, index)}>
                                                         <div>
                                                             <img src={item.address} />
                                                             <span>{item.name}</span>
@@ -210,13 +210,13 @@ class Home extends Component {
                                                         dots={false}
                                                         autoplay
                                                         infinite={true}
-                                                        autoplayInterval={3000}	
+                                                        autoplayInterval={3000}
                                                     >
-                                                           <div className="v-item"></div>
-                                                            <div className="v-item"></div>
-                                                            <div className="v-item"></div>
-                                                            <div className="v-item"></div>
-                                                            <div className="v-item"></div>
+                                                        <div className="v-item"></div>
+                                                        <div className="v-item"></div>
+                                                        <div className="v-item"></div>
+                                                        <div className="v-item"></div>
+                                                        <div className="v-item"></div>
 
                                                         {
                                                             this.props.data.discount.discount_list.map((item, index) => (
@@ -296,28 +296,28 @@ class Home extends Component {
                                     <div className="line">
                                         <h2>大家都在领</h2>
                                         <div className="real_coupon">
-                                        <WingBlank>
-                                                    <Carousel className="my-carousel"
-                                                        vertical={true}
-                                                        dots={false}
-                                                        autoplay
-                                                        infinite={true}
-                                                        autoplayInterval={3000}	
-                                                    >
-                                                           <div className="v-item"></div>
-                                                            <div className="v-item"></div>
-                                                            <div className="v-item"></div>
-                                                            <div className="v-item"></div>
-                                                            <div className="v-item"></div>
+                                            <WingBlank>
+                                                <Carousel className="my-carousel"
+                                                    vertical={true}
+                                                    dots={false}
+                                                    autoplay
+                                                    infinite={true}
+                                                    autoplayInterval={3000}
+                                                >
+                                                    <div className="v-item"></div>
+                                                    <div className="v-item"></div>
+                                                    <div className="v-item"></div>
+                                                    <div className="v-item"></div>
+                                                    <div className="v-item"></div>
 
-                                                        {
-                                                            this.props.data.discount.discount_list.map((item, index) => (
-                                                                <div key={index}>{item.tag}&nbsp;{item.name}</div>
-                                                            ))
-                                                        }
+                                                    {
+                                                        this.props.data.discount.discount_list.map((item, index) => (
+                                                            <div key={index}>{item.tag}&nbsp;{item.name}</div>
+                                                        ))
+                                                    }
 
-                                                    </Carousel>
-                                           </WingBlank>
+                                                </Carousel>
+                                            </WingBlank>
                                         </div>
                                         <div className="swiper_div">
                                             <WingBlank >
@@ -374,7 +374,7 @@ class Home extends Component {
                                                     </div>
                                                     <p className="find_product_price">
                                                         券{item.quanJine}元
-                                                </p>
+                                            </p>
                                                     <div className="find_product_more">
                                                         已售 {item.xiaoliang} | 评论 {item.comment}
                                                     </div>

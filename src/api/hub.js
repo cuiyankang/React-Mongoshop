@@ -273,12 +273,12 @@ export const halflistApi = (time) => http.get({
 
 
 
-export const HandleSortListApi = (px="t") => http.get({
+export const HandleSortListApi = (px="t",cid=22) => http.get({
     url: "/ajax/index.php",
     data: {
         r:"class%2Fcyajaxsub",
         page:1,
-        cid:22,
+        cid:cid,
         px:px,
         cac_id:""
     }
