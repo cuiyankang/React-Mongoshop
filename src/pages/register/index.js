@@ -2,9 +2,7 @@ import React from "react";
 import {RegisterCSS} from "./styled";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {mapDispatchToProps,mapStateToProps} from "./mapStore"
 import {RegisterApi} from "../../api/hub"
-@connect(mapStateToProps,mapDispatchToProps)
 @withRouter
 
 class Register extends React.Component{
@@ -84,7 +82,6 @@ class Register extends React.Component{
             }else if(data.data.status==1){
                 alert(data.data.info)
                 this.props.history.push("/login")
-                
             }
         }
     }
