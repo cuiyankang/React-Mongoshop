@@ -23,11 +23,12 @@ module.exports = (app) => {
         changeOrigin: true,
     }))
     
-    app.use("/ajaxlogin", proxy({
-        target: "http://39.105.204.151:3000",
+    
+    app.use("/loginregister", proxy({
+        target: "http://39.105.204.151:3000", //登录注册接口
         changeOrigin: true,
         pathRewrite: {
-            "^/ajaxlogin": ""
+            "^/loginregister": ""
         }
     }))
     

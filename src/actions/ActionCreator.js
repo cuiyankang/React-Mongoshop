@@ -1,10 +1,9 @@
-import { hotNine, SampleSale, GetOneData, GetTwoData, ChangeID, flodup, HandleSortList, LoginData } from "./ActionTypes"
-import {
-    ListApi, categoryApi, foldupApi, folduplistApi, rankingApi,
-    rankinglistApi, halfApi, halflistApi, SampleSaleListApi, GetOneDataApi, GetTwoDataApi, ChangeIDApi,
-    SearchApi, SearchToListApi, HomeBannerApi,
-    HomeNavApi, discountApi, layoutApi, BrandSaleApi, LineApi, FindApi, HandleSortListApi, LoginApi
-} from "../api/hub";
+
+import { hotNine,SampleSale,GetOneData,GetTwoData,ChangeID,flodup,HandleSortList,LoginData,RegisterData } from "./ActionTypes"
+import { ListApi, categoryApi, foldupApi, folduplistApi, rankingApi, 
+    rankinglistApi,halfApi,halflistApi,SampleSaleListApi,GetOneDataApi,GetTwoDataApi,ChangeIDApi,
+    SearchApi,SearchToListApi,HomeBannerApi,RegisterApi,
+    HomeNavApi,discountApi,layoutApi,BrandSaleApi,LineApi,FindApi,HandleSortListApi,LoginApi } from "../api/hub";
 
 //九块九
 export const categoryAsyncAction = () => {
@@ -299,6 +298,20 @@ export const LoginDataAction = (user, pass) => {
     })
     return async (dispatch) => {
         let data = await LoginApi(user, pass);
+        dispatch(getAsyncAction(data))
+    }
+}
+
+
+export const RegisterDataAction = (user,pass) => {
+    var getAsyncAction = (data) => ({
+        type: RegisterData,
+        data: data
+    })
+    return async (dispatch) => {
+        console.log(666,user,pass);
+        let data = await RegisterApi(user,pass);
+        console.log(data);
         dispatch(getAsyncAction(data))
     }
 }

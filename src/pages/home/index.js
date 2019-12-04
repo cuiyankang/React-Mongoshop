@@ -185,7 +185,7 @@ class Home extends Component {
                                         {
                                             this.props.data.nav.nav_list.map((item, index) => (
                                                 <li key={index} >
-                                                    <a onClick={this.handlepush.bind(this,index)}>
+                                                    <a onClick={this.handlepush.bind(this, index)}>
                                                         <div>
                                                             <img src={item.address} />
                                                             <span>{item.name}</span>
@@ -391,7 +391,6 @@ class Home extends Component {
 
                 </Fragment>
             </PageContainer>
-
         )
     }
     handlepush(index) {//跳转

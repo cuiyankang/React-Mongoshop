@@ -3,18 +3,18 @@ import { connect } from "react-redux";
 import {LoginCSS} from "./styled";
 import {withRouter} from "react-router-dom";
 import { mapStateToProps, mapDispatchToProps } from "./mapStore"
+import {LoginApi} from "../../api/hub"
+import Cookies from "js-cookie"
 @connect(mapStateToProps, mapDispatchToProps)
-
 @withRouter
+
 class Login extends React.Component{
     constructor(){
         super();
         this.state={
             user:"",
             pass:"",
-
         }
-
     }
     render(){
         console.log(this.props,555);
@@ -68,23 +68,34 @@ class Login extends React.Component{
     }
     handleCancelAll(){
         this.setState({
-            user:""
+            user:"",
+            pass:""
         })
     }
-    handleLogin(){
+    async handleLogin(){
         let user=this.state.user;
         let pass = this.state.pass;
-        console.log(user,pass,typeof user,55555);
-        if(user==""){
-            alert("请输入用户名");
-        }else if(pass==""){
-            alert("请输入密码");
-        }else{
-            // this.props.handleLoginData(user,pass);
-        }
-    }
-  
+        console.log(user,pass);
+        let data = await LoginApi(user,pass);
+        console.log(data);
+        if(data.code){
+            if(data.data.code==0){
+                alert(data.data.info)
+            }else if(data.data.code==2){
+                alert(data.data.info)
+            }else if(data.data.code==1){
+                alert(data.data.info)
+                Cookies.set("token",111)
+                console.log(user);
 
+                // this.props.history.push({pathname:"/mine",query:{user}});
+                console.log(this,this.props.history.push({pathname:"/mine",query:{user}}),999);
+            }
+        }
+        
+
+        
+    }
 }
 
 export default Login;

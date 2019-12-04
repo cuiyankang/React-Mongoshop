@@ -15,3 +15,7 @@ export const foldup="FOLD_UP"
 export const HandleSortList = "HANDLE_SORT_LIST"
 
 export const LoginData="LOGIN_DATA";
+
+
+export const RegisterData="REGISTER_DATA";
+

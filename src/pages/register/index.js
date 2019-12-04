@@ -1,7 +1,12 @@
 import React from "react";
 import {RegisterCSS} from "./styled";
 import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {mapDispatchToProps,mapStateToProps} from "./mapStore"
+import {RegisterApi} from "../../api/hub"
+@connect(mapStateToProps,mapDispatchToProps)
 @withRouter
+
 class Register extends React.Component{
     constructor(){
         super();
@@ -9,7 +14,6 @@ class Register extends React.Component{
             user:"",
             pass:"",
         }
-
     }
     render(){
         console.log(this.props,555);
@@ -34,7 +38,7 @@ class Register extends React.Component{
                         <input type="text" className="phoneInput" placeholder="密码" value={pass} onChange={this.handleChangePass.bind(this)}/>
                         <div className="iconfont cancel">&#xe63e;</div>
                     </div>
-                    <div className="button" onClick={this.handleLogin.bind(this)}>注册</div>
+                    <div className="button" onClick={this.handleRegister.bind(this)}>注册</div>
                     <div className="registerNow">已有账号？立即<a href="http://localhost:3000/#/login">登录</a></div>
                 </form>
                 <div className="bottom">
@@ -62,16 +66,27 @@ class Register extends React.Component{
     }
     handleCancelAll(){
         this.setState({
-            user:""
+            user:"",
+            pass:""
         })
     }
-    handleLogin(){
+    async handleRegister(){
         let user=this.state.user;
         let pass = this.state.pass;
-        console.log(user,pass,55555);
+        let data = await RegisterApi(user,pass);
+        if(data.code){
+            if(data.data.status==0){
+                alert(data.data.info)
+            }else if(data.data.status==2){
+                alert(data.data.info)
+                this.handleCancelAll();
+            }else if(data.data.status==1){
+                alert(data.data.info)
+                this.props.history.push("/login")
+                
+            }
+        }
     }
-
-
 }
 
 export default Register;
