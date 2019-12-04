@@ -83,7 +83,10 @@ export const Container = styled.div`
     overflow:auto;
     padding-top: .2rem;
     background: #f5f5f5;
-    &>.list{
+    
+    /* .bscroll{
+        height:100%; */
+        &>.list{
         display:flex;
         flex-direction:column;
         position:relative;
@@ -186,10 +189,9 @@ export const Container = styled.div`
                     }
                 }
             }
-            
-
-
         }
     }
+    /* } */
+
     
 `
