@@ -1,4 +1,6 @@
 import React, { Fragment } from "react"
+import {withRouter} from "react-router-dom"
+@withRouter
 class Categoryeach extends React.Component {
     render() {
         let { activeIndex, fenlei } = this.props;
@@ -17,7 +19,7 @@ class Categoryeach extends React.Component {
                                                 <li 
                                                 className="item" 
                                                 key={i.api_cid}
-                                                onClick={this.handleClickId.bind(this,i.api_cid)}
+                                                onClick={this.handleClickId.bind(this,i.api_cid,i.name)}
                                                 >
                                                     <a>
                                                         <img src={i.img} />
@@ -35,8 +37,10 @@ class Categoryeach extends React.Component {
             </Fragment>
         )
     }
-    handleClickId(id){
-        console.log(id)
+    handleClickId(id,name){
+        this.props.history.push({pathname:"/sortlist",query:id,name:name})
+        // console.log(id,name)
+        localStorage.setItem("sortdata" ,JSON.stringify({query:id,name:name}))
     }
 }
 

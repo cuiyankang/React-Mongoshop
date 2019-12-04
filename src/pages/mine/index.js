@@ -4,10 +4,17 @@ import {MineCSS} from "./styled"
 
 class Mine extends React.Component{
     constructor(){
-        super();
+        super()
+        this.state={
+            user:localStorage.getItem("user")
+            
+        }
+        
     }
     render(){
-        console.log(this,222);
+        // console.log(this.props,224898419192);
+        let {user} =this.state
+        console.log(user)
         return (
             <MineCSS>
                 <div className="top">
@@ -15,7 +22,7 @@ class Mine extends React.Component{
                         <div className="nameImg">
                             <img src="https://cmsstatic.ffquan.cn//wap_new/user/images/integral/user.png?v=201908292038" alt=""/>
                             <div className="loginRegister">
-                                
+                                欢迎您，{user}
                             </div>
                         </div>
                         <div className="icon">
@@ -56,6 +63,7 @@ class Mine extends React.Component{
             </MineCSS>
         )
     }
+   
 
 }
 

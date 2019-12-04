@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {ShoppingCartCSS} from "./styled"
+import {withRouter} from "react-router-dom"
+@withRouter
 class ShoppingCart extends Component {
     render() {
         return (

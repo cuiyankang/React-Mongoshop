@@ -5,8 +5,9 @@ export const mapStateToProps = (state)=>({
 })
 
 export const mapDispatchToProps = (dispatch)=>({
-    handleSortList(px){
-        dispatch(handleSortListAction(px))
+    handleSortList(px,id){
+        console.log(px,id,444)
+        dispatch(handleSortListAction(px,id))
     },
     
 })

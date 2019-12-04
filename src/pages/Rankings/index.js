@@ -1,10 +1,11 @@
 import React from "react"
 
-import { Ranking, Header, Category, Container } from "./styled"
+import { Ranking, Header, Category, Container} from "./styled"
 import { withRouter } from 'react-router-dom'
 import { connect } from "react-redux"
 import { mapStateToProps, mapDispatchToProps } from "./mapStore"
 import RankingEachs from "./rankingEach"
+import BscrollCom from "../../common/bscroll/index"
 @connect(mapStateToProps, mapDispatchToProps)
 @withRouter
 class Rankings extends React.Component {
@@ -17,9 +18,10 @@ class Rankings extends React.Component {
     render() {
         // console.log(this.props.data.ranking.rankinglist, 555)
         let ranking = this.props.data.ranking.rankingbanner;
-        let list=this.props.data.ranking.rankinglist
+        let list = this.props.data.ranking.rankinglist
         let { activeIndex } = this.state;
         return (
+
             <Ranking>
                 <Header>
                     <i className="iconfont left" onClick={this.handleback.bind(this)}>&#xe605;</i>
@@ -37,20 +39,24 @@ class Rankings extends React.Component {
 
                     </div>
                 </Category>
-                <Container>
-                    <div className="list">
-                        <RankingEachs list={list?list:""} activeIndex={activeIndex} />
-                    </div>
 
+                <Container>
+                    {/* <BscrollCom className="bscroll"> */}
+                        <div className="list">
+                            <RankingEachs list={list ? list : ""} activeIndex={activeIndex} />
+                        </div>
+                    {/* </BscrollCom> */}
                 </Container>
+
             </Ranking>
+
         )
     }
     handleClick(id) {
         this.setState({
             activeIndex: id
         })
-        this.componentDidMount(this.state.activeIndex?this.state.activeIndex:"4")
+        this.componentDidMount(this.state.activeIndex ? this.state.activeIndex : "4")
         // console.log(this.state.activeIndex)
     }
     componentDidMount(id) {
@@ -60,10 +66,10 @@ class Rankings extends React.Component {
         // console.log(id, 88)
     }
     handleback() {
-        
+
         this.props.history.goBack()
-        
-        
+
+
     }
 }
 

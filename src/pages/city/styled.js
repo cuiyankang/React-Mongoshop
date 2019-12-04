@@ -10,6 +10,10 @@ export const Container = styled.div`
             .hot_city{
                 line-height: 0.6rem;
                 font-size: 0.28rem;
+                .hot_title{
+                    font-size:.3rem;
+                    line-height:.6rem;padding-left: 0.26rem;
+                }
                 .hot_city_list{
                     width: 96%;
                     background: #f5f5f5;
@@ -63,6 +67,9 @@ export const Container = styled.div`
             &>div{
                 padding: 0.1rem 0.05rem;
                 font-size: 0.25rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
 

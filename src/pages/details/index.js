@@ -1,15 +1,16 @@
 import React from "react";
-import {DetailsCSS} from "./styled";
-import {withRouter} from "react-router-dom";
+import { DetailsCSS } from "./styled";
+import { withRouter } from "react-router-dom";
 @withRouter
 
 class Details extends React.Component {
 
     render() {
 
-        var { dtitle, id, pic, jiage, quanJine, salesNum, xiaoliang, yuanjia } = localStorage.getItem("ranking") ? JSON.parse(localStorage.getItem("ranking")) : this.props.location.query;
-        var { dtitle, id, pic, jiage, quanJine, salesNum, xiaoliang, yuanjia } = localStorage.getItem("foldup") ? JSON.parse(localStorage.getItem("foldup")) : this.props.location.query;
-        var { name, id, picUrl, price, itemSoldNum, yijuhua } = localStorage.getItem("half") ? JSON.parse(localStorage.getItem("half")) : this.props.location.query;
+        var { dtitle, pic, jiage, quanJine, salesNum, xiaoliang, yuanjia } = localStorage.getItem("ranking") ? JSON.parse(localStorage.getItem("ranking")) : this.props.location.query;
+        var { dtitle, pic, jiage, quanJine, salesNum, xiaoliang, yuanjia } = localStorage.getItem("foldup") ? JSON.parse(localStorage.getItem("foldup")) : this.props.location.query;
+        var { name, picUrl, price, itemSoldNum, yijuhua } = localStorage.getItem("half") ? JSON.parse(localStorage.getItem("half")) : this.props.location.query;
+        var { d_title, picUrl, price, itemSoldNum, yijuhua, quan_jine } = localStorage.getItem("sortlist") ? JSON.parse(localStorage.getItem("sortlist")) : this.props.location.query;
 
         return (
             <DetailsCSS>
@@ -25,7 +26,7 @@ class Details extends React.Component {
                         <p>26:26:28:0</p>
                     </div>
                 </div>
-                <div className="title"><span>天猫</span>{name ? name : dtitle}</div>
+                <div className="title"><span>天猫</span>{name ? name : dtitle ? dtitle : d_title}</div>
                 <div className="moneyNum">
                     <div>券后价<span>￥{jiage}</span></div>
                     {yijuhua ? <p>{yijuhua}</p> : <p>已售<span>{itemSoldNum ? itemSoldNum : xiaoliang}</span>件</p>}
@@ -40,7 +41,7 @@ class Details extends React.Component {
                 </div>
                 <a href className="discount">
                     <div className="discountL">
-                        <div className="discountLT">{quanJine}元优惠券</div>
+                        <div className="discountLT">{quanJine?quanJine:quan_jine}元优惠券</div>
                         <div className="discountLB">使用期限:2019.11.29-2019.11.30</div>
                     </div>
                     <div className="discountR">立即领卷</div>
@@ -63,7 +64,7 @@ class Details extends React.Component {
         )
     }
     handleCart() {
-        alert("去购物车")
+        // alert("去购物车")
     }
     handleJump() {
         this.props.history.goBack();
@@ -73,6 +74,8 @@ class Details extends React.Component {
         localStorage.removeItem("foldupID")
         localStorage.removeItem('half')
         localStorage.removeItem("halfID")
+        localStorage.removeItem('sortlist')
+        localStorage.removeItem("sortlistID")
 
     }
 

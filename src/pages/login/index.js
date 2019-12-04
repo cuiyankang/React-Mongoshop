@@ -17,7 +17,7 @@ class Login extends React.Component{
         }
     }
     render(){
-        console.log(this.props,555);
+        // console.log(this.props,555);
         let {user,pass} = this.state;
         return (
             <LoginCSS>
@@ -75,9 +75,9 @@ class Login extends React.Component{
     async handleLogin(){
         let user=this.state.user;
         let pass = this.state.pass;
-        console.log(user,pass);
+        // console.log(user,pass);
         let data = await LoginApi(user,pass);
-        console.log(data);
+        // console.log(data);
         if(data.code){
             if(data.data.code==0){
                 alert(data.data.info)
@@ -85,11 +85,13 @@ class Login extends React.Component{
                 alert(data.data.info)
             }else if(data.data.code==1){
                 alert(data.data.info)
-                Cookies.set("token",111)
-                console.log(user);
+                Cookies.set("token",encodeURIComponent(user))
+                // console.log(user);
 
-                // this.props.history.push({pathname:"/mine",query:{user}});
-                console.log(this,this.props.history.push({pathname:"/mine",query:{user}}),999);
+                this.props.history.push("/mine");
+                localStorage.setItem("user",user)
+
+                // console.log(this,this.props.history.push({pathname:"/mine",query:user}));
             }
         }
         

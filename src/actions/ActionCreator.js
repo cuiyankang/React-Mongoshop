@@ -1,8 +1,11 @@
+
 import { hotNine,SampleSale,GetOneData,GetTwoData,ChangeID,flodup,HandleSortList,LoginData,RegisterData } from "./ActionTypes"
 import { ListApi, categoryApi, foldupApi, folduplistApi, rankingApi, 
-    rankinglistApi,halfApi,halflistApi,SampleSaleListApi,GetOneDataApi,GetTwoDataApi,ChangeIDApi,
-    SearchApi,SearchToListApi,HomeBannerApi,RegisterApi,
-    HomeNavApi,discountApi,layoutApi,BrandSaleApi,LineApi,FindApi,HandleSortListApi,LoginApi } from "../api/hub";
+        rankinglistApi,halfApi,halflistApi,SampleSaleListApi,
+        GetOneDataApi,GetTwoDataApi,ChangeIDApi,
+        SearchApi,SearchToListApi,HomeBannerApi,
+        HomeNavApi,discountApi,layoutApi,BrandSaleApi,LineApi,
+        FindApi,HandleSortListApi,LoginApi,cityListApi } from "../api/hub";
 
 //九块九
 export const categoryAsyncAction = () => {
@@ -17,57 +20,57 @@ export const categoryAsyncAction = () => {
     }
 }
 
-export const SearchAsyncAction = (city)=>{
-    var SearchAction = (data)=>({
-        type:"SEARCH_ACT",
-        data:data
+export const SearchAsyncAction = (city) => {
+    var SearchAction = (data) => ({
+        type: "SEARCH_ACT",
+        data: data
     })
 
-    return async (dispatch)=>{
+    return async (dispatch) => {
         let data = await SearchApi(city);
-        if(data.status == 1){
+        if (data.status == 1) {
             dispatch(SearchAction(data.data))
-        }else{
+        } else {
             let data = [];
             dispatch(SearchAction(data))
         }
     }
 }
 
-export const listAsyncAction = (city,status)=>{
-    var SearchToListAction = (data,status)=>({
-        type:"SEARCH_TOLIST",
-        data:data,
+export const listAsyncAction = (city, status) => {
+    var SearchToListAction = (data, status) => ({
+        type: "SEARCH_TOLIST",
+        data: data,
         status
     })
 
-    return async (dispatch)=>{
+    return async (dispatch) => {
         let data = await SearchToListApi(city);
-        dispatch(SearchToListAction(data.data.data,status))
+        dispatch(SearchToListAction(data.data.data, status))
     }
 }
 
 
-export const HomeAsyncAction = ()=>{
-    var HomeBannerAction = (data)=>({
-        type:"HOME_BANNER",
+export const HomeAsyncAction = () => {
+    var HomeBannerAction = (data) => ({
+        type: "HOME_BANNER",
         data
     })
 
-    return async (dispatch)=>{
+    return async (dispatch) => {
         let data = await HomeBannerApi();
         dispatch(HomeBannerAction(data.data.config))
     }
 }
 //list
-export const SampleSaleAction = ()=>{
-    var getAsyncSampleSaleAction = (data)=>({
-        type:SampleSale,
-        data:data,
-        
+export const SampleSaleAction = () => {
+    var getAsyncSampleSaleAction = (data) => ({
+        type: SampleSale,
+        data: data,
+
     })
 
-    return async (dispatch)=>{
+    return async (dispatch) => {
         // console.log(11111111,dispatch);
 
         let data = await SampleSaleListApi();
@@ -76,14 +79,14 @@ export const SampleSaleAction = ()=>{
     }
 }
 // //品牌特卖
-export const GetOneDataAction = ()=>{
-    var getAsyncGetOneDataAction = (data)=>({
-        type:GetOneData,
-        data:data,
-        
+export const GetOneDataAction = () => {
+    var getAsyncGetOneDataAction = (data) => ({
+        type: GetOneData,
+        data: data,
+
     })
 
-    return async (dispatch)=>{
+    return async (dispatch) => {
         // console.log(11111111,dispatch);
 
         let data = await GetOneDataApi();
@@ -92,53 +95,53 @@ export const GetOneDataAction = ()=>{
     }
 }
 
-export const GetTwoDataAction = ()=>{
-    var getAsyncGetTwoDataAction = (data)=>({
-        type:GetTwoData,
-        data:data,
-        
+export const GetTwoDataAction = () => {
+    var getAsyncGetTwoDataAction = (data) => ({
+        type: GetTwoData,
+        data: data,
+
     })
 
-    return async (dispatch)=>{
+    return async (dispatch) => {
         let data = await GetTwoDataApi();
         dispatch(getAsyncGetTwoDataAction(data))
     }
 }
 
 
-export const NavAsyncAction = ()=>{
-    var HomeNavAction = (data)=>({
-        type:"HOME_NAV",
+export const NavAsyncAction = () => {
+    var HomeNavAction = (data) => ({
+        type: "HOME_NAV",
         data
     })
 
-    return async (dispatch)=>{
+    return async (dispatch) => {
         let data = await HomeNavApi();
         dispatch(HomeNavAction(data.data.config.data))
     }
 }
 
-export const ChangeIDAction = (id)=>{
-    var ChangeIDActionAction = (data)=>({
-        type:ChangeID,
-        data:data,
-        
+export const ChangeIDAction = (id) => {
+    var ChangeIDActionAction = (data) => ({
+        type: ChangeID,
+        data: data,
+
     })
 
-    return async (dispatch)=>{
+    return async (dispatch) => {
         let data = await ChangeIDApi(id);
         dispatch(ChangeIDActionAction(data))
     }
 }
 
 
-export const discountAction = ()=>{
-    var homeDiscountAction = (data)=>({
-        type:"HOME_DISCOUNTAPI",
+export const discountAction = () => {
+    var homeDiscountAction = (data) => ({
+        type: "HOME_DISCOUNTAPI",
         data
     })
 
-    return async (dispatch)=>{
+    return async (dispatch) => {
         let data = await discountApi();
         dispatch(homeDiscountAction(data.data.config.list))
     }
@@ -157,13 +160,13 @@ export const fenleiAsyncAction = () => {
 }
 
 
-export const LayoutAction = ()=>{
-    var homeLayoutAction = (data)=>({
-        type:"HOME_LAYOUT",
+export const LayoutAction = () => {
+    var homeLayoutAction = (data) => ({
+        type: "HOME_LAYOUT",
         data
     })
 
-    return async (dispatch)=> {
+    return async (dispatch) => {
         let data = await layoutApi();
         dispatch(homeLayoutAction(data.data))
     }
@@ -181,13 +184,13 @@ export const foldupAsyncAction = () => {
 }
 
 
-export const BrandSaleAction = ()=>{
-    var homeSaleAction = (data)=>({
-        type:"HOME_SALE",
+export const BrandSaleAction = () => {
+    var homeSaleAction = (data) => ({
+        type: "HOME_SALE",
         data
     })
 
-    return async (dispatch)=> {
+    return async (dispatch) => {
         let data = await BrandSaleApi();
         dispatch(homeSaleAction(data.data.config))
     }
@@ -205,28 +208,28 @@ export const foldlupistAsyncAction = (cId) => {
 }
 
 
-export const LineAction = ()=>{
-    var homeLineAction = (data)=>({
-        type:"HOME_LINE",
+export const LineAction = () => {
+    var homeLineAction = (data) => ({
+        type: "HOME_LINE",
         data
     })
 
-    return async (dispatch)=>{
+    return async (dispatch) => {
         let data = await LineApi();
-        dispatch(homeLineAction(data.data.config.list))        
+        dispatch(homeLineAction(data.data.config.list))
     }
 }
 
 
-export const findAction = (page)=>{
-    var homeFindAction = (data)=>({
-        type:"HOME_FIND",
+export const findAction = (page) => {
+    var homeFindAction = (data) => ({
+        type: "HOME_FIND",
         data
     })
 
-    return async (dispatch)=>{
+    return async (dispatch) => {
         let data = await FindApi(page);
-        dispatch(homeFindAction(data.data.list))        
+        dispatch(homeFindAction(data.data.list))
     }
 }
 //疯抢导航
@@ -278,39 +281,44 @@ export const halflistAction = (time) => {
 }
 
 
-export const handleSortListAction = (px) => {
+export const handleSortListAction = (px, id) => {
+    // console.log(px,id,888)
     var getAsyncAction = (data) => ({
         type: HandleSortList,
         data: data
     })
     return async (dispatch) => {
-        let data = await HandleSortListApi(px);
+        let data = await HandleSortListApi(px, id);
         dispatch(getAsyncAction(data))
     }
 }
 
-export const LoginDataAction = (user,pass) => {
+export const LoginDataAction = (user, pass) => {
     var getAsyncAction = (data) => ({
         type: LoginData,
         data: data
     })
     return async (dispatch) => {
-        let data = await LoginApi(user,pass);
+        let data = await LoginApi(user, pass);
         dispatch(getAsyncAction(data))
     }
 }
 
-
-export const RegisterDataAction = (user,pass) => {
-    var getAsyncAction = (data) => ({
-        type: RegisterData,
+//城市列表
+export const cityListAction = () => {
+    var getCityAction = (data) => ({
+        type: 'CITY_LIST',
         data: data
     })
     return async (dispatch) => {
-        console.log(666,user,pass);
-        let data = await RegisterApi(user,pass);
-        console.log(data);
-        dispatch(getAsyncAction(data))
+        if(!localStorage.getItem('city')){
+            let data = await cityListApi();
+            localStorage.setItem("city",JSON.stringify(data.data.cities));
+            dispatch(getCityAction(data))
+        }else{
+            let data = JSON.parse(localStorage.getItem('city'));
+            dispatch(getCityAction(data))
+        }
     }
 }
 
