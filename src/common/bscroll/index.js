@@ -18,6 +18,9 @@ export default class BscrollCom extends Component {
             mouseWheel: true
         });
     }
+    handleScrollTo(y){
+        this.scroll.scrollTo(0,y,300)//滚动到指定的位置四个参数，(x轴坐标，y轴坐标，time，easing缓动函数)
+    }
     handlepullingUp(callback){
         this.scroll.on("pullingUp",()=>{
             callback();

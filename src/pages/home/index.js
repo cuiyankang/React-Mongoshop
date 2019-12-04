@@ -12,13 +12,17 @@ import Bscroll from "../../common/bscroll/index.js";
 @connect(mapStateToProps, mapDispatchToProps)
 @withRouter
 class Home extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data: [0, 1, 2, 3, 4],
             imgHeight: 134,
             data1: [0, 1, 2, 3],
-            flg: [0, 1, 2]
+            flg: [0, 1, 2],
+            city:'北京'
+        }
+        if( this.props.location.query){
+            this.state.city = this.props.location.query;
         }
         this.page = 1;
     }
@@ -59,6 +63,7 @@ class Home extends Component {
 
 
     render() {
+        
         let find = this.props.data.find.find_list;
         let line = this.props.data.line.line_list;
         let newlineone = this.handlePage(line, 1, 3)
@@ -92,185 +97,160 @@ class Home extends Component {
         ];
         return (
             <PageContainer>
-                <Fragment>
-                    <Header>
-                        <div className="header_pr">
-                            <a href="#/search">
-                                <div className="wap_search">
-                                    <span className="palaceholder">
-                                        输入商品名或粘贴宝贝标题搜索
-                                    </span>
+            <Fragment>
+                <Header>
+                    <div className="header_pr">
+                        <a href="#/search">
+                            <div className="wap_search">
+                                <span className="palaceholder">
+                                    输入商品名或粘贴宝贝标题搜索
+                                </span>
+                            </div>
+                        </a>
+                        <div className="header-info">
+                            <a href="#/city">
+                                <div className="city-entry">
+                                    <span className="city-name">{this.state.city}</span>
+                                    <i className="city-entry-arrow"></i>
                                 </div>
                             </a>
-                            <div className="header-info">
-                                <a href="#/city">
-                                    <div className="city-entry">
-                                        <span className="city-name">北京</span>
-                                        <i className="city-entry-arrow"></i>
-                                    </div>
-                                </a>
-                            </div>
                         </div>
-                        <div className="header_tab">
-                            <div className="left">
-                                <span>精选</span>
-                            </div>
-                            <div className="right"><span className="iconfont mulu">&#xe9ee;</span></div>
+                    </div>
+                    <div className="header_tab">
+                        <div className="left">
+                            <span>精选</span>
                         </div>
-                        <div className="tab_nav">
-                            <div>
-                                <WhiteSpace />
-                                <Tabs tabs={tabs} renderTabBar={props => <Tabs.DefaultTabBar {...props}
-                                    page={4}
-                                    tabBarBackgroundColor="rgb(131,11,215)"
-                                    tabBarUnderlineStyle={{ border: 'none' }}
-                                    tabBarActiveTextColor="#fff"
-                                    onTabClick={this.handleTab}
-                                    tabBarInactiveTextColor="rgba(255,255,255,.65)"
-                                    tabBarTextStyle={{ fontWeight: "bold" }}
-                                />}
+                        <div className="right"><span className="iconfont mulu">&#xe9ee;</span></div>
+                    </div>
+                    <div className="tab_nav">
+                        <div>
+                            <WhiteSpace />
+                            <Tabs tabs={tabs} renderTabBar={ props => <Tabs.DefaultTabBar {...props} 
+                                                        page={4} 
+                                                        tabBarBackgroundColor="rgb(131,11,215)"
+                                                        tabBarUnderlineStyle={{border:'none'}}
+                                                        tabBarActiveTextColor="#fff"
+                                                        onTabClick={this.handleTab}
+                                                        tabBarInactiveTextColor="rgba(255,255,255,.65)"
+                                                        tabBarTextStyle={{fontWeight:"bold"}}
+                                                />}
+                            >
+                            </Tabs>
+                            <WhiteSpace />
+                        </div>
+                    </div>
+                </Header>
+
+                <Main>
+                    <Bscroll ref="scroll">
+                        <div className="main">
+                            <WingBlank >
+                                <Carousel
+                                    infinite={true}
+                                    autoplay={true}
                                 >
-                                </Tabs>
-                                <WhiteSpace />
+                                    {this.state.data.map((val, index) => (
+                                        <a
+                                            key={val}
+                                            style={{ display: 'inline-block', width: '100%', height: '2.8rem' }}
+                                        >
+                                            <img
+                                                src={list_banner ? list_banner[index].pic : list_banner}
+                                                style={{ width: '100%', height: '100%', borderRadius: '5px' }}
+                                            />
+                                        </a>
+                                    ))}
+
+
+                                </Carousel>
+                            </WingBlank>
+                            <div className="main_module_layout">
+                                <div className="show_module">
+                                    <div className="max_activity">
+                                        <a>
+                                            <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01qkuiBj2JJhzQyYE5d_!!2053469401.gif" />
+                                        </a>
+                                    </div>
+                                    <ul className="activity_min_group">
+                                        <li>
+                                            <a href="">
+                                                <img src="https://img.alicdn.com/imgextra/i4/2053469401/O1CN01vXHY3t2JJhzMnH3cy_!!2053469401.jpg" alt="" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <img src="https://img.alicdn.com/imgextra/i4/2053469401/O1CN018W1gzy2JJhzN50FOj_!!2053469401.jpg" alt="" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </Header>
-
-                    <Main>
-                        <Bscroll ref="scroll">
-                            <div className="main">
-                                <WingBlank >
-                                    <Carousel
-                                        infinite={true}
-                                        autoplay={true}
-                                    >
-                                        {this.state.data.map((val, index) => (
-                                            <a
-                                                key={val}
-                                                style={{ display: 'inline-block', width: '100%', height: '2.8rem' }}
-                                            >
-                                                <img
-                                                    src={list_banner ? list_banner[index].pic : list_banner}
-                                                    style={{ width: '100%', height: '100%', borderRadius: '5px' }}
-                                                />
-                                            </a>
-                                        ))}
-
-
-                                    </Carousel>
-                                </WingBlank>
-                                <div className="main_module_layout">
-                                    <div className="show_module">
-                                        <div className="max_activity">
-                                            <a>
-                                                <img src="https://img.alicdn.com/imgextra/i2/2053469401/O1CN01qkuiBj2JJhzQyYE5d_!!2053469401.gif" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="main_module_nav">
-                                        <ol>
-                                            {
-                                                this.props.data.nav.nav_list.map((item, index) => (
-                                                    <li key={index} onClick={this.handlepush.bind(this, index)}>
-                                                        <a href="">
-                                                            <div>
-                                                                <img src={item.address} />
-                                                                <span>{item.name}</span>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                ))
-                                            }
-                                        </ol>
-                                    </div>
-                                    <div className="discount_header">
-                                        <div className="top-line-group">
-                                            <div className="top-line-left">
-                                                <img src="https://img.alicdn.com/imgextra/i3/2053469401/O1CN011wdOkj2JJhy7TkPFo_!!2053469401.png" />
-                                            </div>
-                                            <div className="top-line-right">
-                                                <a>
-                                                    <WingBlank>
-                                                        <Carousel className="my-carousel"
-                                                            vertical={true}
-                                                            dots={false}
-                                                            autoplay
-                                                            infinite={true}
-                                                            autoplayInterval={3000}
-                                                        >
-                                                            <div className="v-item"></div>
-                                                            <div className="v-item"></div>
-                                                            <div className="v-item"></div>
-                                                            <div className="v-item"></div>
-                                                            <div className="v-item"></div>
-
-                                                            {
-                                                                this.props.data.discount.discount_list.map((item, index) => (
-                                                                    <div key={index}>{item.tag}&nbsp;{item.name}</div>
-                                                                ))
-                                                            }
-
-                                                        </Carousel>
-                                                    </WingBlank>
+                            <div className="main_module_nav">
+                                <ol>
+                                    {
+                                        this.props.data.nav.nav_list.map((item, index) => (
+                                            <li key={index}>
+                                                <a href="">
+                                                    <div>
+                                                        <img src={item.address} />
+                                                        <span>{item.name}</span>
+                                                    </div>
                                                 </a>
-                                            </div>
-                                        </div>
+                                            </li>
+                                        )
+                                        )
+                                    }
+                                </ol>
+                            </div>
+                            <div className="discount_header">
+                                <div className="top-line-group">
+                                    <div className="top-line-left">
+                                        <img src="https://img.alicdn.com/imgextra/i3/2053469401/O1CN011wdOkj2JJhy7TkPFo_!!2053469401.png" />
                                     </div>
-                                    <div className="display_window">
-                                        <div className="window">
-                                            <div className="ddq">
-                                                <div className="ddq_herder">
-                                                    <h3>咚咚抢</h3>
-                                                </div>
-                                                <div className="ddq_list">
-                                                    <ul className="ddq_list_ul">
-                                                        {
-                                                            layout.map((item, index) => (
-                                                                <li key={index}>
-                                                                    <a>
-                                                                        <div>
-                                                                            <img src={item.pic} />
-                                                                        </div>
-                                                                        <p>￥{item.price}<del>$29</del></p>
-                                                                    </a>
-                                                                </li>
-                                                            ))
-                                                        }
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div className="import">
-                                                {
-                                                    config ? config.map((item, index) => (
-                                                        <div className="import_top" key={index}>
-                                                            <a>
-                                                                <img src={item.address} />
-                                                            </a>
-                                                        </div>
-                                                    )) : ''
-                                                }
+                                    <div className="top-line-right">
+                                        <a>
+                                            <WingBlank>
+                                                <Carousel className="my-carousel"
+                                                    vertical={true}
+                                                    dots={false}
+                                                    autoplay
+                                                    infinite={true}
+                                                    autoplayInterval={3000}	
+                                                >
+                                                       <div className="v-item"></div>
+                                                        <div className="v-item"></div>
+                                                        <div className="v-item"></div>
+                                                        <div className="v-item"></div>
+                                                        <div className="v-item"></div>
 
-                                            </div>
-                                        </div>
+                                                    {
+                                                        this.props.data.discount.discount_list.map((item, index) => (
+                                                            <div key={index}>{item.tag}&nbsp;{item.name}</div>
+                                                        ))
+                                                    }
+
+                                                </Carousel>
+                                            </WingBlank>
+                                        </a>
                                     </div>
-                                    <div className="brand_sale">
-                                        <div className="brand">
-                                            <div className="title_group">
-                                                <div className="title">
-                                                    <h3>品牌特卖</h3>
-                                                    <p></p>
-                                                </div>
-                                                <div className="more">
-                                                    <a href="">更多品牌 ></a>
-                                                </div>
-                                            </div>
-                                            <ul>
-
+                                </div>
+                            </div>
+                            <div className="display_window">
+                                <div className="window">
+                                    <div className="ddq">
+                                        <div className="ddq_herder">
+                                            <h3>咚咚抢</h3>
+                                        </div>
+                                        <div className="ddq_list">
+                                            <ul className="ddq_list_ul">
                                                 {
-                                                    sale.map((item, index) => (
+                                                    layout.map((item, index) => (
                                                         <li key={index}>
                                                             <a>
-                                                                <img src={item.address} />
+                                                                <div>
+                                                                    <img src={item.pic} />
+                                                                </div>
+                                                                <p>￥{item.price}<del>$29</del></p>
                                                             </a>
                                                         </li>
                                                     ))
@@ -278,106 +258,144 @@ class Home extends Component {
                                             </ul>
                                         </div>
                                     </div>
-                                    <div className="main_line">
-                                        <div className="line">
-                                            <h2>大家都在领</h2>
-                                            <div className="real_coupon">
-                                                <WingBlank>
-                                                    <Carousel className="my-carousel"
-                                                        vertical={true}
-                                                        dots={false}
-                                                        autoplay
-                                                        infinite={true}
-                                                        autoplayInterval={3000}
-                                                    >
-                                                        <div className="v-item"></div>
-                                                        <div className="v-item"></div>
-                                                        <div className="v-item"></div>
-                                                        <div className="v-item"></div>
-                                                        <div className="v-item"></div>
-
-                                                        {
-                                                            this.props.data.discount.discount_list.map((item, index) => (
-                                                                <div key={index}>{item.tag}&nbsp;{item.name}</div>
-                                                            ))
-                                                        }
-
-                                                    </Carousel>
-                                                </WingBlank>
-                                            </div>
-                                            <div className="swiper_div">
-                                                <WingBlank >
-                                                    <Carousel
-                                                        infinite={true}
-                                                        autoplay={true}
-                                                        dots={false}
-                                                    >
-                                                        {
-                                                            this.state.data1.map((val, index) => (
-                                                                <div key={val}>
-                                                                    <div className="swiper_coupon_list" key={index}>
-                                                                        {
-                                                                            newline[index].map((item, index) => (
-                                                                                <a key={index}>
-                                                                                    <img src={item.pic} />
-                                                                                    <p className="list_text">
-                                                                                        {item.dtitle}
-                                                                                    </p>
-                                                                                    <p className="list_price">
-                                                                                        ￥{item.price}
-                                                                                    </p>
-                                                                                    <span className="info ">即将领完</span>
-                                                                                </a>
-                                                                            ))
-                                                                        }
-
-                                                                    </div>
-                                                                </div>
-                                                            ))
-                                                        }
-
-                                                    </Carousel>
-                                                </WingBlank>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <h2 className="find_title">发现好货</h2>
-                                    <div className="find_goods">
-                                        <ul>
-
-                                            {
-                                                find.map((item, index) => (
-                                                    <li key={index}>
-                                                        <div className="find_good_imgbox">
-                                                            <img src={item.pic} />
-                                                        </div>
-                                                        <p className="find_product_list_title">{item.dtitle}</p>
-                                                        <div className="find-product-label-group">
-                                                            <span>券后</span>
-                                                            <span>{item.jiage}</span>
-                                                            <span>限时价</span>
-                                                        </div>
-                                                        <p className="find_product_price">
-                                                            券{item.quanJine}元
-                                                </p>
-                                                        <div className="find_product_more">
-                                                            已售 {item.xiaoliang} | 评论 {item.comment}
-                                                        </div>
-                                                    </li>
-                                                ))
-                                            }
-
-                                        </ul>
+                                    <div className="import">
+                                        {
+                                            config ? config.map((item, index) => (
+                                                <div className="import_top" key={index}>
+                                                    <a>
+                                                        <img src={item.address} />
+                                                    </a>
+                                                </div>
+                                            )) : ''
+                                        }
 
                                     </div>
                                 </div>
                             </div>
-                        </Bscroll>
-                    </Main>
+                            <div className="brand_sale">
+                                <div className="brand">
+                                    <div className="title_group">
+                                        <div className="title">
+                                            <h3>品牌特卖</h3>
+                                            <p></p>
+                                        </div>
+                                        <div className="more">
+                                            <a href="">更多品牌 ></a>
+                                        </div>
+                                    </div>
+                                    <ul>
 
-                </Fragment>
-            </PageContainer>
+                                        {
+                                            sale.map((item, index) => (
+                                                <li key={index}>
+                                                    <a>
+                                                        <img src={item.address} />
+                                                    </a>
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="main_line">
+                                <div className="line">
+                                    <h2>大家都在领</h2>
+                                    <div className="real_coupon">
+                                    <WingBlank>
+                                                <Carousel className="my-carousel"
+                                                    vertical={true}
+                                                    dots={false}
+                                                    autoplay
+                                                    infinite={true}
+                                                    autoplayInterval={3000}	
+                                                >
+                                                       <div className="v-item"></div>
+                                                        <div className="v-item"></div>
+                                                        <div className="v-item"></div>
+                                                        <div className="v-item"></div>
+                                                        <div className="v-item"></div>
+
+                                                    {
+                                                        this.props.data.discount.discount_list.map((item, index) => (
+                                                            <div key={index}>{item.tag}&nbsp;{item.name}</div>
+                                                        ))
+                                                    }
+
+                                                </Carousel>
+                                       </WingBlank>
+                                    </div>
+                                    <div className="swiper_div">
+                                        <WingBlank >
+                                            <Carousel
+                                                infinite={true}
+                                                autoplay={true}
+                                                dots={false}
+                                            >
+                                                {
+                                                    this.state.data1.map((val, index) => (
+                                                        <div key={val}>
+                                                            <div className="swiper_coupon_list" key={index}>
+                                                                {
+                                                                    newline[index].map((item, index) => (
+                                                                        <a key={index}>
+                                                                            <img src={item.pic} />
+                                                                            <p className="list_text">
+                                                                                {item.dtitle}
+                                                                            </p>
+                                                                            <p className="list_price">
+                                                                                ￥{item.price}
+                                                                            </p>
+                                                                            <span className="info ">即将领完</span>
+                                                                        </a>
+                                                                    ))
+                                                                }
+
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                }
+
+                                            </Carousel>
+                                        </WingBlank>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2 className="find_title">发现好货</h2>
+                            <div className="find_goods">
+                                <ul>
+
+                                    {
+                                        find.map((item, index) => (
+                                            <li key={index}>
+                                                <div className="find_good_imgbox">
+                                                    <img src={item.pic} />
+                                                </div>
+                                                <p className="find_product_list_title">{item.dtitle}</p>
+                                                <div className="find-product-label-group">
+                                                    <span>券后</span>
+                                                    <span>{item.jiage}</span>
+                                                    <span>限时价</span>
+                                                </div>
+                                                <p className="find_product_price">
+                                                    券{item.quanJine}元
+                                            </p>
+                                                <div className="find_product_more">
+                                                    已售 {item.xiaoliang} | 评论 {item.comment}
+                                                </div>
+                                            </li>
+                                        ))
+                                    }
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </Bscroll>
+                </Main>
+
+            </Fragment>
+        </PageContainer>
 
         )
     }
