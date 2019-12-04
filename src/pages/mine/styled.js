@@ -10,9 +10,9 @@ export const MineCSS = styled.div`
         margin-top:.3rem;width:100%;display:flex;justify-content:space-between;
     }
     .nameImg{
-        height:1.32rem; width:50%;display:flex;justify-content:space-between;align-items:center;
+        height:1.32rem; display:flex;justify-content:space-between;align-items:center;
         img{
-            height:100%;margin-left:.3rem;
+            height:100%;margin:0 .3rem;
         }
     }
     .other{

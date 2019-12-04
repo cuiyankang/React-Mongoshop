@@ -53,8 +53,8 @@ export const TabBarRoute = [
         meta: {
             flag: true
         },
-        icon: "\ue600",
-        text: "收藏"
+        icon: "\ue501",
+        text: "购物车"
     },
     {
         path: "/mine",

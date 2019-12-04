@@ -18,11 +18,12 @@ class SortList extends React.Component {
         }
     }
     render() {
+        console.log(this.props,888)
         let data = this.props.data.sortList.data;
         let {name_sort}=this.state;
         let {query,name} =JSON.parse(localStorage.getItem("sortdata"));
         
-        console.log(query,name,777)
+        // console.log(query,name,777)
         return (
             <SortListCSS>
                 <div className="header">

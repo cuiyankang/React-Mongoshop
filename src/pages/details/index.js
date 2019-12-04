@@ -64,7 +64,7 @@ class Details extends React.Component {
         )
     }
     handleCart() {
-        alert("去购物车")
+        // alert("去购物车")
     }
     handleJump() {
         this.props.history.goBack();

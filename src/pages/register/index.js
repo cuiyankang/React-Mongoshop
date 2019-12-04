@@ -16,7 +16,7 @@ class Register extends React.Component{
         }
     }
     render(){
-        console.log(this.props,555);
+        // console.log(this.props,555);
         let {user,pass} = this.state;
         return (
             <RegisterCSS>
@@ -42,9 +42,9 @@ class Register extends React.Component{
                     <div className="registerNow">已有账号？立即<a href="http://localhost:3000/#/login">登录</a></div>
                 </form>
                 <div className="bottom">
-                    <a href="">验证码登录</a>
+                    <a href>验证码登录</a>
                     <span>|</span>
-                    <a href="">找回密码</a>
+                    <a href>找回密码</a>
                 </div>
             </RegisterCSS>
         )
@@ -73,6 +73,7 @@ class Register extends React.Component{
     async handleRegister(){
         let user=this.state.user;
         let pass = this.state.pass;
+        console.log(user,pass,888)
         let data = await RegisterApi(user,pass);
         if(data.code){
             if(data.data.status==0){

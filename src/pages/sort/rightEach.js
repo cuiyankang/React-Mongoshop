@@ -40,6 +40,7 @@ class Categoryeach extends React.Component {
     handleClickId(id,name){
         this.props.history.push({pathname:"/sortlist",query:id,name:name})
         // console.log(id,name)
+        localStorage.setItem("sortdata" ,JSON.stringify({query:id,name:name}))
     }
 }
 
