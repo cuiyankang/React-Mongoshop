@@ -285,10 +285,23 @@ export const HandleSortListApi = (px="t") => http.get({
 })
 
 export const LoginApi = (user,pass) => http.post({
-    url: "/ajaxlogin/users/login",
-    body: {
+    url: "/loginregister/users/login",
+    method:"post",
+    data: {
         username:user,
         password:pass
-    }
+    },
 })
+
+
+export const RegisterApi = (user,pass) => http.post({
+    url: "/loginregister/users/register",
+    method:"post",
+    data: {
+        username:user,
+        password:pass
+    },
+})
+
+
 

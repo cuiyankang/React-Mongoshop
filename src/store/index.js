@@ -15,6 +15,8 @@ import ranking from "./reducers/ranking.js"
 import half from "./reducers/half"
 import find from "./reducers/find.js"
 import sortList from "./reducers/sortList"
+import login from "./reducers/login"
+import register from "./reducers/register"
 import reduxThunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -36,6 +38,8 @@ const reducers = combineReducers({
     half,
     find,
     sortList,
+    login,
+    register,
 
 })
 
