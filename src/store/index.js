@@ -14,6 +14,7 @@ import foldup from "./reducers/foldup.js"
 import ranking from "./reducers/ranking.js"
 import half from "./reducers/half"
 import find from "./reducers/find.js"
+import city from "./reducers/city"
 import sortList from "./reducers/sortList"
 import login from "./reducers/login"
 import register from "./reducers/register"
@@ -40,7 +41,7 @@ const reducers = combineReducers({
     sortList,
     login,
     register,
-
+    city,
 })
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(reduxThunk)));

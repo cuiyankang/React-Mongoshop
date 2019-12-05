@@ -304,4 +304,7 @@ export const RegisterApi = (user,pass) => http.post({
 })
 
 
-
+export const cityListApi = () => http.get({
+    url: "/api/cityList",
+    body: {}
+})

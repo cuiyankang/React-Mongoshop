@@ -1,9 +1,11 @@
 
 import { hotNine,SampleSale,GetOneData,GetTwoData,ChangeID,flodup,HandleSortList,LoginData,RegisterData } from "./ActionTypes"
 import { ListApi, categoryApi, foldupApi, folduplistApi, rankingApi, 
-    rankinglistApi,halfApi,halflistApi,SampleSaleListApi,GetOneDataApi,GetTwoDataApi,ChangeIDApi,
-    SearchApi,SearchToListApi,HomeBannerApi,RegisterApi,
-    HomeNavApi,discountApi,layoutApi,BrandSaleApi,LineApi,FindApi,HandleSortListApi,LoginApi } from "../api/hub";
+        rankinglistApi,halfApi,halflistApi,SampleSaleListApi,
+        GetOneDataApi,GetTwoDataApi,ChangeIDApi,
+        SearchApi,SearchToListApi,HomeBannerApi,
+        HomeNavApi,discountApi,layoutApi,BrandSaleApi,LineApi,
+        FindApi,HandleSortListApi,LoginApi,cityListApi } from "../api/hub";
 
 //九块九
 export const categoryAsyncAction = () => {
@@ -302,16 +304,21 @@ export const LoginDataAction = (user, pass) => {
     }
 }
 
-
-export const RegisterDataAction = (user,pass) => {
-    var getAsyncAction = (data) => ({
-        type: RegisterData,
+//城市列表
+export const cityListAction = () => {
+    var getCityAction = (data) => ({
+        type: 'CITY_LIST',
         data: data
     })
     return async (dispatch) => {
-        console.log(666,user,pass);
-        let data = await RegisterApi(user,pass);
-        console.log(data);
-        dispatch(getAsyncAction(data))
+        if(!localStorage.getItem('city')){
+            let data = await cityListApi();
+            localStorage.setItem("city",JSON.stringify(data.data.cities));
+            dispatch(getCityAction(data))
+        }else{
+            let data = JSON.parse(localStorage.getItem('city'));
+            dispatch(getCityAction(data))
+        }
     }
 }
+
