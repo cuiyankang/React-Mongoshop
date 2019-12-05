@@ -6,7 +6,7 @@ import shop from "../../static/shopping.gif";
 class ShoppingCart extends Component {
     constructor() {
         super();
-        let { sCount, sPrice } = this.countPrice(JSON.parse(localStorage.getItem("cart"))); 
+        let { sCount, sPrice } = this.countPrice(JSON.parse(localStorage.getItem("cart")));
         this.state = {
             data: JSON.parse(localStorage.getItem("cart")),
             selectedAll: true,
@@ -24,42 +24,44 @@ class ShoppingCart extends Component {
                     <div className="iconfont right">&#xe601;</div>
                 </div>
                 <div className="centerAll">
-                    <ul ref="box">
-                        {
-                            data ? data.map((item, index) => (
-                                <div key={item.id}>
-                                    <li className="shop">
-                                        <input type="checkbox" className="radio" name="aaa" ref="box" checked={item.flag} onChange={this.handleChange.bind(this, index)} />
-                                        <img src={item.pic} alt="" />
-                                        <div className="detailsOther">
-                                            <div className="details">
-                                                <div className="title">
-                                                    <p>{item.name}</p>
+                    {
+                        data ? <ul ref="box">
+                            {
+                                data ? data.map((item, index) => (
+                                    <div key={item.id}>
+                                        <li className="shop">
+                                            <input type="checkbox" className="radio" name="aaa" ref="box" checked={item.flag} onChange={this.handleChange.bind(this, index)} />
+                                            <img src={item.pic} alt="" />
+                                            <div className="detailsOther">
+                                                <div className="details">
+                                                    <div className="title">
+                                                        <p>{item.name}</p>
+                                                    </div>
+                                                    <div className="money">￥{item.price}</div>
                                                 </div>
-                                                <div className="money">￥{item.price}</div>
-                                            </div>
-                                            <div className="num">
-                                                数量
-                                                <button onClick={this.handleReduce.bind(this,index)}>-</button>
-                                                <input type="text" value={item.num} onChange={this.handleChangeData.bind(this)} />
-                                                <button onClick={this.handleAdd.bind(this,index)}>+</button>
-                                            </div>
-                                            <div className="num">
-                                                小计&nbsp;&nbsp;
+                                                <div className="num">
+                                                    数量
+                                                <button onClick={this.handleReduce.bind(this, index)}>-</button>
+                                                    <input type="text" value={item.num} onChange={this.handleChangeData.bind(this)} />
+                                                    <button onClick={this.handleAdd.bind(this, index)}>+</button>
+                                                </div>
+                                                <div className="num">
+                                                    小计&nbsp;&nbsp;
                                                 <span className="money">
-                                                    ￥{item.num*item.price}
-                                                </span>
+                                                        ￥{item.num * item.price}
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <hr />
-                                </div>
-                            )) : ""
-                        }
-                    </ul>
-                    <div className="noShop">
-                        <img src={shop} alt="" />
-                    </div>
+                                        </li>
+                                        <hr />
+                                    </div>
+                                )) : ""
+                            }
+                        </ul> : <div className="noShop">
+                                <img src={shop} alt="" />
+                            </div>
+                    }
+
                 </div>
                 <div className="all">
                     <div style={{ display: "flex", justifyContent: "center", alignItems: 'center' }}>
@@ -158,7 +160,7 @@ class ShoppingCart extends Component {
         this.setState({
             selectedAll: bStop,
         })
-        
+
 
 
         //总价和总量
@@ -189,12 +191,12 @@ class ShoppingCart extends Component {
         this.state.data.map((item, index) => {
             item.flag = !this.state.selectedAll;
         })
-        if(this.state.selectedAll){
+        if (this.state.selectedAll) {
             this.setState({
-                sCount:0,
-                sPrice:0
+                sCount: 0,
+                sPrice: 0
             })
-        }else{
+        } else {
             let { sCount, sPrice } = this.countPrice(this.state.data);
             this.setState({
                 sCount,
@@ -205,7 +207,7 @@ class ShoppingCart extends Component {
     handleReduce(index) {
         let cart = this.state.data;
         cart[index].num--;
-        if(cart[index].num<1){
+        if (cart[index].num < 1) {
             cart[index].num = 1;
         }
         this.setState({
