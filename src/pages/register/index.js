@@ -33,7 +33,7 @@ class Register extends React.Component{
                     </div>
                     <div className="phone">
                         <div className="iconfont icon">&#xe613;</div>
-                        <input type="text" className="phoneInput" placeholder="密码" value={pass} onChange={this.handleChangePass.bind(this)}/>
+                        <input type="password" className="phoneInput" placeholder="密码" value={pass} onChange={this.handleChangePass.bind(this)}/>
                         <div className="iconfont cancel">&#xe63e;</div>
                     </div>
                     <div className="button" onClick={this.handleRegister.bind(this)}>注册</div>

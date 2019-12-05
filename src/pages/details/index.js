@@ -6,9 +6,6 @@ import { withRouter } from "react-router-dom";
 class Details extends React.Component {
 
     render() {
-        
-        console.log(this.props);
-
         if(JSON.parse(localStorage.getItem("ranking"))){
             var { dtitle, pic, jiage, quanJine, salesNum, xiaoliang, yuanjia } = JSON.parse(localStorage.getItem("ranking")) ? JSON.parse(localStorage.getItem("ranking")) : this.props.location.query;
         }else if(JSON.parse(localStorage.getItem("foldup")) ){
@@ -48,7 +45,7 @@ class Details extends React.Component {
                 </div>
                 <a href className="discount">
                     <div className="discountL">
-                        <div className="discountLT">{quanJine?quanJine:quan_jine}元优惠券</div>
+                        <div className="discountLT">{quanJine ? quanJine : quan_jine}元优惠券</div>
                         <div className="discountLB">使用期限:2019.11.29-2019.11.30</div>
                     </div>
                     <div className="discountR">立即领卷</div>
@@ -198,6 +195,7 @@ class Details extends React.Component {
         localStorage.removeItem("halfID")
         localStorage.removeItem('sortlist')
         localStorage.removeItem("sortlistID")
+        // console.log(JSON.parse(localStorage.getItem("sortdata")),888)
 
     }
 
