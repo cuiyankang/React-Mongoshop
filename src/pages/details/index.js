@@ -6,11 +6,15 @@ import { withRouter } from "react-router-dom";
 class Details extends React.Component {
 
     render() {
-
-        var { dtitle, pic, jiage, quanJine, salesNum, xiaoliang, yuanjia } = localStorage.getItem("ranking") ? JSON.parse(localStorage.getItem("ranking")) : this.props.location.query;
-        var { dtitle, pic, jiage, quanJine, salesNum, xiaoliang, yuanjia } = localStorage.getItem("foldup") ? JSON.parse(localStorage.getItem("foldup")) : this.props.location.query;
-        var { name, picUrl, price, itemSoldNum, yijuhua } = localStorage.getItem("half") ? JSON.parse(localStorage.getItem("half")) : this.props.location.query;
-        var { d_title, picUrl, price, itemSoldNum, yijuhua, quan_jine } = localStorage.getItem("sortlist") ? JSON.parse(localStorage.getItem("sortlist")) : this.props.location.query;
+        if(JSON.parse(localStorage.getItem("ranking"))){
+            var { dtitle, pic, jiage, quanJine, salesNum, xiaoliang, yuanjia } = JSON.parse(localStorage.getItem("ranking")) ? JSON.parse(localStorage.getItem("ranking")) : this.props.location.query;
+        }else if(JSON.parse(localStorage.getItem("foldup")) ){
+            var { dtitle, pic, jiage, quanJine, salesNum, xiaoliang, yuanjia } = JSON.parse(localStorage.getItem("foldup")) ? JSON.parse(localStorage.getItem("foldup")) : this.props.location.query;
+        }else if(JSON.parse(localStorage.getItem("half"))){
+            var { name, picUrl, price, itemSoldNum, yijuhua } = JSON.parse(localStorage.getItem("half")) ? JSON.parse(localStorage.getItem("half")) : this.props.location.query;
+        }else if(JSON.parse(localStorage.getItem("sortlist"))){
+            var { d_title, pic, itemSoldNum, yijuhua, quan_jine ,yuanjia,jiage} = JSON.parse(localStorage.getItem("sortlist")) ? JSON.parse(localStorage.getItem("sortlist")) : this.props.location.query;
+        }
 
         return (
             <DetailsCSS>
@@ -28,7 +32,7 @@ class Details extends React.Component {
                 </div>
                 <div className="title"><span>天猫</span>{name ? name : dtitle ? dtitle : d_title}</div>
                 <div className="moneyNum">
-                    <div>券后价<span>￥{jiage}</span></div>
+                    <div>券后价<span>￥{jiage?jiage:price}</span></div>
                     {yijuhua ? <p>{yijuhua}</p> : <p>已售<span>{itemSoldNum ? itemSoldNum : xiaoliang}</span>件</p>}
 
                 </div>
@@ -41,7 +45,7 @@ class Details extends React.Component {
                 </div>
                 <a href className="discount">
                     <div className="discountL">
-                        <div className="discountLT">{quanJine?quanJine:quan_jine}元优惠券</div>
+                        <div className="discountLT">{quanJine ? quanJine : quan_jine}元优惠券</div>
                         <div className="discountLB">使用期限:2019.11.29-2019.11.30</div>
                     </div>
                     <div className="discountR">立即领卷</div>
@@ -65,6 +69,121 @@ class Details extends React.Component {
     }
     handleCart() {
         // alert("去购物车")
+        if(this.props.location.query){
+            let dataProps=this.props.location.query;
+            let data = {
+                id:dataProps.id,
+                name:dataProps.name ? dataProps.name : dataProps.dtitle ? dataProps.dtitle : dataProps.d_title,
+                price:dataProps.jiage?dataProps.jiage:dataProps.price,
+                num:1,
+                pic:dataProps.picUrl ? dataProps.picUrl : dataProps.pic
+            }
+            if(!localStorage.getItem("cart")){
+                localStorage.setItem("cart","["+JSON.stringify(data)+"]");
+            }else{
+                let dataCart = JSON.parse(localStorage.getItem("cart"))
+                let has=0;
+                for(var i=0;i<dataCart.length;i++){
+                    if(dataCart[i].id==dataProps.id){
+                        has=1;
+                        let num = dataCart[i].num+1;
+                        let dataNew = {
+                            id:dataCart[i].id,
+                            name:dataCart[i].name,
+                            price:dataCart[i].price,
+                            num:num,
+                            pic:dataCart[i].picUrl ? dataCart[i].picUrl : dataCart[i].pic
+                        }
+                        dataCart.splice(i,1,dataNew);
+                        localStorage.setItem("cart",JSON.stringify(dataCart));
+                        break;
+                    }
+                }
+                if(has==0){
+                    dataCart.push(data);
+                    localStorage.setItem("cart",JSON.stringify(dataCart));
+                }
+            }
+        }else{
+            if(JSON.parse(localStorage.getItem("ranking"))){
+                let data1=JSON.parse(localStorage.getItem("ranking"));
+                let cartData = JSON.parse(localStorage.getItem("cart"));
+                for(var i=0;i<cartData.length;i++){
+                    if(data1.id==cartData[i].id){
+                        let num = cartData[i].num+1;
+                        let data = {
+                            id:cartData[i].id,
+                            name:cartData[i].name,
+                            price:cartData[i].price,
+                            num:num,
+                            pic:cartData[i].picUrl ? cartData[i].picUrl : cartData[i].pic
+                        }
+                        cartData.splice(i,1,data);
+                        localStorage.setItem("cart",JSON.stringify(cartData));
+                        break;
+                    }
+                }
+            }else if(JSON.parse(localStorage.getItem("foldup")) ){
+                let data1=JSON.parse(localStorage.getItem("foldup"));
+                let cartData = JSON.parse(localStorage.getItem("cart"));
+                for(var i=0;i<cartData.length;i++){
+                    if(data1.id==cartData[i].id){
+                        let num = cartData[i].num+1;
+                        let data = {
+                            id:cartData[i].id,
+                            name:cartData[i].name,
+                            price:cartData[i].price,
+                            num:num,
+                            pic:cartData[i].picUrl ? cartData[i].picUrl : cartData[i].pic
+                        }
+                        cartData.splice(i,1,data);
+                        localStorage.setItem("cart",JSON.stringify(cartData));
+                        break;
+                    }
+                }
+            }else if(JSON.parse(localStorage.getItem("half"))){
+                let data1=JSON.parse(localStorage.getItem("half"));
+                let cartData = JSON.parse(localStorage.getItem("cart"));
+                for(var i=0;i<cartData.length;i++){
+                    if(data1.id==cartData[i].id){
+                        let num = cartData[i].num+1;
+                        let data = {
+                            id:cartData[i].id,
+                            name:cartData[i].name,
+                            price:cartData[i].price,
+                            num:num,
+                            pic:cartData[i].picUrl ? cartData[i].picUrl : cartData[i].pic
+                        }
+                        cartData.splice(i,1,data);
+                        localStorage.setItem("cart",JSON.stringify(cartData));
+                        break;
+                    }
+                }
+            }else if(JSON.parse(localStorage.getItem("sortlist"))){
+                let data1=JSON.parse(localStorage.getItem("sortlist"));
+                let cartData = JSON.parse(localStorage.getItem("cart"));
+                for(var i=0;i<cartData.length;i++){
+                    if(data1.id==cartData[i].id){
+                        let num = cartData[i].num+1;
+                        let data = {
+                            id:cartData[i].id,
+                            name:cartData[i].name,
+                            price:cartData[i].price,
+                            num:num,
+                            pic:cartData[i].picUrl ? cartData[i].picUrl : cartData[i].pic
+
+                        }
+                        cartData.splice(i,1,data);
+                        localStorage.setItem("cart",JSON.stringify(cartData));
+                        break;
+                    }
+                }
+            }
+        }
+        
+            this.props.history.push("/shoppingcart")
+        
+       
     }
     handleJump() {
         this.props.history.goBack();
@@ -76,6 +195,7 @@ class Details extends React.Component {
         localStorage.removeItem("halfID")
         localStorage.removeItem('sortlist')
         localStorage.removeItem("sortlistID")
+        // console.log(JSON.parse(localStorage.getItem("sortdata")),888)
 
     }
 

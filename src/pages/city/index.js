@@ -13,6 +13,7 @@ class City extends Component {
         let hotCity = this.handleCityPopular(cities);
         let cityList = this.cityList(cities);
         return (
+
             <Container ref="cityContainer">
                 <BscrollCom ref="scroll">
                     <div className="city_body">

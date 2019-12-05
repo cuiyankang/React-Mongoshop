@@ -304,6 +304,24 @@ export const LoginDataAction = (user, pass) => {
     }
 }
 
+// //城市列表
+// export const cityListAction = () => {
+//     var getCityAction = (data) => ({
+//         type: 'CITY_LIST',
+//         data: data
+//     })
+//     return async (dispatch) => {
+//         if(!localStorage.getItem('city')){
+//             let data = await cityListApi();
+//             localStorage.setItem("city",JSON.stringify(data.data.cities));
+//             dispatch(getCityAction(data))
+//         }else{
+//             let data = JSON.parse(localStorage.getItem('city'));
+//             dispatch(getCityAction(data))
+//         }
+//     }
+// }
+
 //城市列表
 export const cityListAction = () => {
     var getCityAction = (data) => ({
