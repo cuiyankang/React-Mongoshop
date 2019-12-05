@@ -4,7 +4,7 @@ const defaultState = {
 }
 
 export default (state=defaultState,action)=>{
-    console.log(action.type);
+    // console.log(action.type);
     switch(action.type){
         case RegisterData:
             let registerData = JSON.parse(JSON.stringify(state));

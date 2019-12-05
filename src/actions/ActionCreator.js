@@ -331,7 +331,7 @@ export const cityListAction = () => {
     
 
     return async (dispatch) => {
-        if(!localStorage.getItem('city')){
+        if (!localStorage.getItem('city')) {
             let data = await cityListApi();
             localStorage.setItem("city",JSON.stringify(data.data.cities));
             dispatch(getCityAction(data.data.cities))

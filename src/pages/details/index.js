@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 class Details extends React.Component {
 
     render() {
+        
         if(JSON.parse(localStorage.getItem("ranking"))){
             var { dtitle, pic, jiage, quanJine, salesNum, xiaoliang, yuanjia } = JSON.parse(localStorage.getItem("ranking")) ? JSON.parse(localStorage.getItem("ranking")) : this.props.location.query;
         }else if(JSON.parse(localStorage.getItem("foldup")) ){
@@ -43,7 +44,7 @@ class Details extends React.Component {
                         <span>√</span>运费险
                     </div>
                 </div>
-                <a href className="discount">
+                <a className="discount">
                     <div className="discountL">
                         <div className="discountLT">{quanJine ? quanJine : quan_jine}元优惠券</div>
                         <div className="discountLB">使用期限:2019.11.29-2019.11.30</div>
@@ -76,8 +77,8 @@ class Details extends React.Component {
                 name:dataProps.name ? dataProps.name : dataProps.dtitle ? dataProps.dtitle : dataProps.d_title,
                 price:dataProps.jiage?dataProps.jiage:dataProps.price,
                 num:1,
-                pic:dataProps.picUrl ? dataProps.picUrl : dataProps.pic,
-                checked:true
+                flag:true,
+                pic:dataProps.picUrl ? dataProps.picUrl : dataProps.pic
             }
             if(!localStorage.getItem("cart")){
                 localStorage.setItem("cart","["+JSON.stringify(data)+"]");
@@ -93,8 +94,8 @@ class Details extends React.Component {
                             name:dataCart[i].name,
                             price:dataCart[i].price,
                             num:num,
-                            pic:dataCart[i].picUrl ? dataCart[i].picUrl : dataCart[i].pic,
-                            checked:true
+                            flag:true,
+                            pic:dataCart[i].picUrl ? dataCart[i].picUrl : dataCart[i].pic
                         }
                         dataCart.splice(i,1,dataNew);
                         localStorage.setItem("cart",JSON.stringify(dataCart));
@@ -118,8 +119,8 @@ class Details extends React.Component {
                             name:cartData[i].name,
                             price:cartData[i].price,
                             num:num,
-                            pic:cartData[i].picUrl ? cartData[i].picUrl : cartData[i].pic,
-                            checked:true
+                            flag:true,
+                            pic:cartData[i].picUrl ? cartData[i].picUrl : cartData[i].pic
                         }
                         cartData.splice(i,1,data);
                         localStorage.setItem("cart",JSON.stringify(cartData));
@@ -137,8 +138,8 @@ class Details extends React.Component {
                             name:cartData[i].name,
                             price:cartData[i].price,
                             num:num,
+                            flag:true,
                             pic:cartData[i].picUrl ? cartData[i].picUrl : cartData[i].pic,
-                            checked:true
                         }
                         cartData.splice(i,1,data);
                         localStorage.setItem("cart",JSON.stringify(cartData));
@@ -156,9 +157,8 @@ class Details extends React.Component {
                             name:cartData[i].name,
                             price:cartData[i].price,
                             num:num,
-                            pic:cartData[i].picUrl ? cartData[i].picUrl : cartData[i].pic,
-                            checked:true
-
+                            flag:true,
+                            pic:cartData[i].picUrl ? cartData[i].picUrl : cartData[i].pic
                         }
                         cartData.splice(i,1,data);
                         localStorage.setItem("cart",JSON.stringify(cartData));
@@ -176,8 +176,8 @@ class Details extends React.Component {
                             name:cartData[i].name,
                             price:cartData[i].price,
                             num:num,
-                            pic:cartData[i].picUrl ? cartData[i].picUrl : cartData[i].pic,
-                            checked:true
+                            flag:true,
+                            pic:cartData[i].picUrl ? cartData[i].picUrl : cartData[i].pic
 
                         }
                         cartData.splice(i,1,data);
@@ -187,7 +187,6 @@ class Details extends React.Component {
                 }
             }
         }
-        
             this.props.history.push("/shoppingcart")
         
        
@@ -202,8 +201,6 @@ class Details extends React.Component {
         localStorage.removeItem("halfID")
         localStorage.removeItem('sortlist')
         localStorage.removeItem("sortlistID")
-        // console.log(JSON.parse(localStorage.getItem("sortdata")),888)
-
     }
 
 
