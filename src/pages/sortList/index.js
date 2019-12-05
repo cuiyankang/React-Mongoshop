@@ -18,7 +18,7 @@ class SortList extends React.Component {
         }
     }
     render() {
-        console.log(this.props,888)
+        // console.log(this.props,888)
         let data = this.props.data.sortList.data;
         let {name_sort}=this.state;
         let {query,name} =JSON.parse(localStorage.getItem("sortdata"));
@@ -68,12 +68,12 @@ class SortList extends React.Component {
 
                     </ul>
                 </div>
-
+                
             </SortListCSS>
         )
     }
     handleGetitem(item,id){
-        console.log(item,id,555)
+        // console.log(item,id,555)
         this.props.history.push({pathname:"/details",id:id,query:item})
         localStorage.setItem("sortlist",JSON.stringify(item));
         localStorage.setItem("sortlistID",id)
@@ -110,7 +110,8 @@ class SortList extends React.Component {
         this.props.history.goBack();
     }
     componentDidMount() {
-        console.log(this.props.location,888)
+
+        // console.log(this.props.location,888)
         localStorage.setItem("sortdata",JSON.stringify(this.props.location))
         let {query}=JSON.parse(localStorage.getItem("sortdata"));
         if(query){
