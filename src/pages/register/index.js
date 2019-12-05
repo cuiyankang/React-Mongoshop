@@ -71,7 +71,7 @@ class Register extends React.Component{
     async handleRegister(){
         let user=this.state.user;
         let pass = this.state.pass;
-        console.log(user,pass,888)
+        // console.log(user,pass,888)
         let data = await RegisterApi(user,pass);
         if(data.code){
             if(data.data.status==0){

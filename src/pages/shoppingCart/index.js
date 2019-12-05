@@ -77,6 +77,62 @@ class ShoppingCart extends Component {
             </ShoppingCartCSS>
         )
     }
+
+
+
+    handleSelectAll() {
+        let cart = this.state.data
+        let UnselectAll = !this.state.selectAll
+        localStorage.setItem("cart", JSON.stringify(cart))
+        for (var i = 0; i < cart.length; i++) {
+            if (UnselectAll === false) {
+                cart[i].flag = false
+            } else {
+                cart[i].flag = true
+            }
+        }
+        this.setState({
+            selectAll: UnselectAll
+        })
+        this.forceUpdate()
+        localStorage.setItem("cart", JSON.stringify(cart))
+    }
+
+
+    handleCheck(index) {
+        let cart = this.state.data
+        cart[index].flag = !cart[index].flag
+        localStorage.setItem("cart", JSON.stringify(cart))
+        // console.log(cart[index].flag,888)
+        this.setState({
+            data: cart
+        })
+
+        if (cart[index].flag === false) {
+            localStorage.setItem("cart", JSON.stringify(cart))
+            this.setState({
+                selectAll: false
+            })
+            // console.log(this.state.selectAll, cart, 222)
+        } else {
+            let sum = 0;
+            for (var i = 0; i < cart.length; i++) {
+                if (cart[i].flag === true) {
+                    sum++
+                }
+            }
+            if (sum === cart.length) {
+                localStorage.setItem("cart", JSON.stringify(cart))
+                this.setState({
+                    selectAll: true
+                })
+            }
+        }
+
+    }
+
+
+
     handleJump() {
         this.props.history.goBack();
     }
