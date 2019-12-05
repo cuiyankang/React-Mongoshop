@@ -1,9 +1,21 @@
-import React, { Component } from 'react'
-import {ShoppingCartCSS} from "./styled"
-import {withRouter} from "react-router-dom"
+import React, { Component, Fragment } from 'react'
+import { ShoppingCartCSS } from "./styled"
+import { withRouter } from "react-router-dom"
+import shop from "../../static/shopping.gif";
 @withRouter
 class ShoppingCart extends Component {
+    constructor() {
+        super();
+        let { sCount, sPrice } = this.countPrice(JSON.parse(localStorage.getItem("cart"))); 
+        this.state = {
+            data: JSON.parse(localStorage.getItem("cart")),
+            selectedAll: true,
+            sCount,
+            sPrice
+        }
+    }
     render() {
+        let { data, selectedAll, sPrice, sCount } = this.state;//信息
         return (
             <ShoppingCartCSS>
                 <div className="header">
@@ -12,58 +24,154 @@ class ShoppingCart extends Component {
                     <div className="iconfont right">&#xe601;</div>
                 </div>
                 <div className="centerAll">
-                    <div className="top">
-                        <input type="checkbox" className="radio" name="aaa"/>
-                        <div className="imgAll">描述</div>
-                        <div className="numberAll">数量</div>
-                    </div>
-                    <ul>
-                    <li className="shop">
-                        <input type="checkbox" className="radio" name="aaa"/>
-                        <img src="https://img.alicdn.com/imgextra/i3/3333859664/O1CN012LGA2FpnzqHNQpw_!!3333859664.jpg_310x310.jpg_.webp" alt=""/>
-                        <div className="details">
-                            <div className="title">新疆苹果</div>
-                            <div className="money">￥100.00</div>
-                        </div>
-                        <div className="num">
-                            <button>-</button>
-                            <input type="text"/>
-                            <button>+</button>
-                        </div>
-                    </li>
-                   
-                    
-                    <li className="shop">
-                        <input type="checkbox" className="radio" name="aaa"/>
-                        <img src="https://img.alicdn.com/imgextra/i3/3333859664/O1CN012LGA2FpnzqHNQpw_!!3333859664.jpg_310x310.jpg_.webp" alt=""/>
-                        <div className="details">
-                            <div className="title">新疆苹果</div>
-                            <div className="money">￥100.00</div>
-                        </div>
-                        <div className="num">
-                            <button>-</button>
-                            <input type="text"/>
-                            <button>+</button>
-                        </div>
-                    </li>
+                    <ul ref="box">
+                        {
+                            data ? data.map((item, index) => (
+                                <div key={item.id}>
+                                    <li className="shop">
+                                        <input type="checkbox" className="radio" name="aaa" ref="box" checked={item.flag} onChange={this.handleChange.bind(this, index)} />
+                                        <img src={item.pic} alt="" />
+                                        <div className="detailsOther">
+                                            <div className="details">
+                                                <div className="title">
+                                                    <p>{item.name}</p>
+                                                </div>
+                                                <div className="money">￥{item.price}</div>
+                                            </div>
+                                            <div className="num">
+                                                数量
+                                                <button onClick={this.handleReduce.bind(this,index)}>-</button>
+                                                <input type="text" value={item.num} onChange={this.handleChangeData.bind(this)} />
+                                                <button onClick={this.handleAdd.bind(this,index)}>+</button>
+                                            </div>
+                                            <div className="num">
+                                                小计&nbsp;&nbsp;
+                                                <span className="money">
+                                                    ￥{item.num*item.price}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <hr />
+                                </div>
+                            )) : ""
+                        }
                     </ul>
-                    <div className="all">
-                        <input type="checkbox" className="radio" name="aaa"/>
-                        <div className="allMoney">合计</div>
-                        <div>不含运费</div>
-                        <button>结算</button>
+                    <div className="noShop">
+                        <img src={shop} alt="" />
                     </div>
                 </div>
-            
-                
-                    
-                
-            
+                <div className="all">
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: 'center' }}>
+                        <input type="checkbox" className="radio left" name="aaa" checked={selectedAll ? 'checkout' : ''} onChange={this.handleAllChange.bind(this)} />全选
+                    </div>
+                    <div className="allMoney">合计:{sPrice}</div>
+                    <div>
+                        数量:
+                        <span>
+                            {sCount}
+                        </span>
+                    </div>
+                    <button>结算</button>
+                </div>
             </ShoppingCartCSS>
         )
     }
     handleJump() {
         this.props.history.goBack();
+    }
+    handleChangeData(e) {
+        let val = e.target.value;
+        this.setState({
+            // num:val
+        })
+    }
+    handleChange(index) {
+        //全选状态的单选，判断
+        let cart = this.state.data;
+        cart[index].flag = !cart[index].flag;
+        this.setState({
+            data: cart
+        })
+        let bStop = true;
+        for (var i = 0; i < cart.length; i++) {
+            if (!cart[i].flag) {
+                bStop = false;
+            }
+        }
+        this.setState({
+            selectedAll: bStop,
+        })
+        
+
+
+        //总价和总量
+        let { sCount, sPrice } = this.countPrice(cart);
+        this.setState({
+            sCount,
+            sPrice
+        })
+    }
+    countPrice(cart) {
+        let sPrice = 0, sCount = 0;
+
+        for (var i = 0; i < cart.length; i++) {
+            if (cart[i].flag) {
+                sCount += cart[i].num;//数量
+                sPrice += cart[i].num * cart[i].price;//总价：数量*单价
+            }
+        }
+        return {
+            sCount,
+            sPrice
+        }
+    }
+    handleAllChange() {
+        this.setState({
+            selectedAll: !this.state.selectedAll,
+        })
+        this.state.data.map((item, index) => {
+            item.flag = !this.state.selectedAll;
+        })
+        if(this.state.selectedAll){
+            this.setState({
+                sCount:0,
+                sPrice:0
+            })
+        }else{
+            let { sCount, sPrice } = this.countPrice(this.state.data);
+            this.setState({
+                sCount,
+                sPrice
+            })
+        }
+    }
+    handleReduce(index) {
+        let cart = this.state.data;
+        cart[index].num--;
+        if(cart[index].num<1){
+            cart[index].num = 1;
+        }
+        this.setState({
+            data: cart
+        })
+        let { sCount, sPrice } = this.countPrice(cart);
+        this.setState({
+            sCount,
+            sPrice
+        })
+    }
+    handleAdd(index) {
+        let cart = this.state.data;
+        cart[index].num++;
+        this.setState({
+            data: cart
+        })
+        let { sCount, sPrice } = this.countPrice(cart);
+        this.setState({
+            sCount,
+            sPrice
+        })
     }
 }
 
