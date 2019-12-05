@@ -25,11 +25,9 @@ class ShoppingCart extends Component {
                 </div>
                 <div className="centerAll">
                     {
-                        data?<ul ref="box">
-                        {
-                                data
-                                ?
-                                data.map((item, index) => (
+                        data ? <ul ref="box">
+                            {
+                                data ? data.map((item, index) => (
                                     <div key={item.id}>
                                         <li className="shop">
                                             <input type="checkbox" className="radio" name="aaa" ref="box" checked={item.flag} onChange={this.handleChange.bind(this, index)} />
