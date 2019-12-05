@@ -189,8 +189,8 @@ class Home extends Component {
                                 <ol>
                                     {
                                         this.props.data.nav.nav_list.map((item, index) => (
-                                            <li key={index}>
-                                                <a href="">
+                                            <li key={index} onClick={this.handlepush.bind(this,index)}>
+                                                <a>
                                                     <div>
                                                         <img src={item.address} />
                                                         <span>{item.name}</span>

@@ -24,10 +24,10 @@ export const SearchToListApi = (city) => http.get({
         token: false,
         page:city.page,
         kw: city.kw,
-        px:"renqi"
+        px: city.px,
     }
 })
-//http://www.mangguozhe.com/index.php?r=index/classifyajax&token=false&page=2&kw=%E5%8F%A3%E7%BA%A2&px=renqi
+//http://www.mangguozhe.com/index.php?r=index/classifyajax&token=false&page=2&kw=%E5%8F%A3%E7%BA%A2&px=renqi&activity_type=0
 
 
 /*首页banner图接口*/
@@ -308,3 +308,17 @@ export const cityListApi = () => http.get({
     url: "/api/cityList",
     body: {}
 })
+
+
+export const sortApi = (city) => http.get({
+    url: "/ajax/index.php",
+    data: {
+        r:'index/classifyajax',
+        token: false,
+        page:city.page,
+        kw: city.kw,
+        px: city.px,
+        activity_type:0,
+    }
+})
+//http://www.mangguozhe.com/index.php?r=index/classifyajax&token=false&page=2&kw=%E5%8F%A3%E7%BA%A2&px=renqi&activity_type=0

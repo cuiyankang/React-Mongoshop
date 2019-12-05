@@ -80,7 +80,17 @@
        http://cmsjapi.ffquan.cn/api/category/index/lingquan-live-new?pageId=1&pageSize=10&entityId=4&type=1&version=v1&tuserId=797808&isWechat=0 
 
   
+ * list：
+     
+     - 人气 http://www.mangguozhe.com/index.php?r=index/classifyajax&token=false&page=2&kw=%E5%8F%A3%E7%BA%A2&px=renqi
 
+     - 销量 http://www.mangguozhe.com/index.php?r=index/classifyajax&token=false&page=2&kw=%E5%8F%A3%E7%BA%A2&px=xiaoliang&activity_type=0
+
+     - 价格
+          价格正序 http://www.mangguozhe.com/index.php?r=index/classifyajax&token=false&page=2&kw=%E5%8F%A3%E7%BA%A2&
+          px=price&activity_type=0
+          
+          价格倒序 http://www.mangguozhe.com/index.php?r=index/classifyajax&token=false&page=2&kw=%E5%8F%A3%E7%BA%A2&px=price_h&activity_type=0
 
 
 

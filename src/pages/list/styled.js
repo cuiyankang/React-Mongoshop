@@ -59,7 +59,6 @@ export const Header = styled.div`
     }
     .nav{
         height:0.84rem;
-        background:green;
         display:flex;
         li{
             height:100%;

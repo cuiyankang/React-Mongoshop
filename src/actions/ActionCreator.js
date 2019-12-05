@@ -5,7 +5,7 @@ import { ListApi, categoryApi, foldupApi, folduplistApi, rankingApi,
         GetOneDataApi,GetTwoDataApi,ChangeIDApi,
         SearchApi,SearchToListApi,HomeBannerApi,
         HomeNavApi,discountApi,layoutApi,BrandSaleApi,LineApi,
-        FindApi,HandleSortListApi,LoginApi,cityListApi } from "../api/hub";
+        FindApi,HandleSortListApi,LoginApi,cityListApi,sortApi } from "../api/hub";
 
 //九块九
 export const categoryAsyncAction = () => {
@@ -310,16 +310,32 @@ export const cityListAction = () => {
         type: 'CITY_LIST',
         data: data
     })
+    
+
     return async (dispatch) => {
         if(!localStorage.getItem('city')){
             let data = await cityListApi();
             localStorage.setItem("city",JSON.stringify(data.data.cities));
-            dispatch(getCityAction(data))
+            dispatch(getCityAction(data.data.cities))
         }else{
             let data = JSON.parse(localStorage.getItem('city'));
             dispatch(getCityAction(data))
         }
     }
 }
+
+
+
+export const SortlistAction = (city) => {
+    var getSortAction = (data) => ({
+        type: 'SORT_LIST',
+        data: data
+    })
+    return async (dispatch) => {
+         let data = await sortApi(city);
+        dispatch(getSortAction(data.data.data))
+    }
+}
+
 
 
