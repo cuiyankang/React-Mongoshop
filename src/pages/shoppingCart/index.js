@@ -7,13 +7,32 @@ class ShoppingCart extends Component {
     constructor() {
         super();
         this.state = {
-            data: JSON.parse(localStorage.getItem("cart")),
-            
+            data:JSON.parse(localStorage.getItem("cart")),
+            all:0,
+            selectAll:"",
+            money:0
         }
     }
     render() {
-        let { data } = this.state;
-        console.log(data, 222);
+        let data = JSON.parse(localStorage.getItem("cart"));
+        console.log(data[0].checked,1032456);
+        let { all,selectAll,money } = this.state;
+        if(data){
+            for(var i=0;i<data.length;i++){
+                if(data[i].checked==true){
+                    all++;
+                    money+=data[i].num*data[i].price;
+                }
+            }
+            console.log(all);
+            if(all==data.length){
+                this.state.selectAll=true;
+                selectAll=true;
+            }else{
+                this.state.selectAll=false;
+                selectAll=false;
+            }   
+        }
         return (
             <ShoppingCartCSS>
                 <div className="header">
@@ -22,65 +41,109 @@ class ShoppingCart extends Component {
                     <div className="iconfont right">&#xe601;</div>
                 </div>
                 <div className="centerAll">
-                    <ul>
-                        {
-                            data ? data.map((item, index) => (
-                                <div key={item.id}>
-                                    <li className="shop">
-                                        <input type="checkbox" className="radio" name="aaa" />
-                                        <img src={item.pic} alt="" />
-                                        <div className="detailsOther">
-                                            <div className="details">
-                                                <div className="title">
-                                                    <p>{item.name}</p>
+                    {
+                        data? 
+                        <ul>
+                            {
+                                data ? data.map((item, index) => (
+                                    <div key={item.id}>
+                                        <li className="shop">
+                                            {
+                                                item.checked==true?<input type="checkbox" className="radio" name="aaa" checked onClick={this.handleChecked.bind(this,index)}/>:""
+                                            }
+                                            {
+                                                item.checked==false?<input type="checkbox" className="radio" name="aaa" onClick={this.handleChecked.bind(this,index)}/>:""
+                                            }
+                                            <img src={item.pic} alt="" />
+                                            <div className="detailsOther">
+                                                <div className="details">
+                                                    <div className="title">
+                                                        <p>{item.name}</p>
+                                                    </div>
+                                                    <div className="money">￥{item.price}</div>
                                                 </div>
-                                                <div className="money">￥{item.price}</div>
+                                                <div className="num">
+                                                    数量
+                                                    <button onClick={this.handleReduce.bind(this,index)}>-</button>
+                                                    <input type="text" value={item.num} onChange={this.handleChangeData.bind(this,index)} />
+                                                    <button onClick={this.handleAdd.bind(this,index)}>+</button>
+                                                </div>
                                             </div>
-                                            <div className="num">
-                                                数量
-                                                <button onClick={this.handleReduce.bind(this)}>-</button>
-                                                <input type="text" value={item.num} onChange={this.handleChangeData.bind(this)} />
-                                                <button onClick={this.handleAdd.bind(this)}>+</button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <hr />
-                                </div>
-                            )) : ""
-                        }
-                    </ul>
-                    <div className="noShop">
+                                        </li>
+                                        <hr />
+                                    </div>
+                                )) : ""
+                            }
+                        </ul>:<div className="noShop">
                         <img src={shop} alt="" />
                     </div>
+                        
+                    }
+                    
                 </div>
                 <div className="all">
-                    <input type="checkbox" className="radio left" name="aaa" />
-                    <div className="allMoney">合计￥100.00</div>
+                    {
+                        selectAll==true?<input type="checkbox" className="radio left" name="aaa" checked onClick={this.handleSelectAll.bind(this)}/>:""
+                    }
+                    {
+                        selectAll==false?<input type="checkbox" className="radio left" name="aaa" onClick={this.handleSelectAll.bind(this)}/>:""
+                    }
+                    <div className="allMoney">合计<span>￥{money.toFixed(2)}</span></div>
                     <div>不含运费</div>
                     <button>结算</button>
                 </div>
             </ShoppingCartCSS>
         )
     }
+    handleChecked(index){
+        this.state.data[index].checked=!this.state.data[index].checked;
+        localStorage.setItem("cart",JSON.stringify(this.state.data));
+        this.forceUpdate();
+    }
     handleJump() {
         this.props.history.goBack();
     }
-    handleChangeData(e) {
+    handleChangeData(index,e) {
         let val = e.target.value;
-        this.setState({
-            // num:val
-        })
+        // console.log(val);
+        this.state.data[index].num = val;
+        localStorage.setItem("cart",JSON.stringify(this.state.data));
+        this.forceUpdate();
     }
 
-    //存localstorage，从localstorage中取数据   不能用双数据绑定，因为取出的数组长度不固定，state中的num无法做到唯一性
-    //每次点击/修改数据时，从localstorage中重新获取数据
-    handleReduce() {
-        let num = this.state.data.num - 1;
-       
+    handleReduce(index) {
+        if(this.state.data[index].num>1){
+            this.state.data[index].num --;
+            localStorage.setItem("cart",JSON.stringify(this.state.data));
+            this.forceUpdate();
+        }
     }
-    handleAdd() {
-        let num = this.state.data.num + 1;
-        
+    handleAdd(index) {
+        this.state.data[index].num ++;
+        localStorage.setItem("cart",JSON.stringify(this.state.data));
+        this.forceUpdate();
+    }
+    handleSelectAll(){
+        let selectAll = !this.state.selectAll;
+        this.setState({
+            selectAll:selectAll,
+        })
+        let data= this.state.data;
+        if(data){
+            if(selectAll==true){
+                for(var i=0;i<data.length;i++){
+                    data[i].checked=true;
+                }
+                localStorage.setItem("cart",JSON.stringify(data));
+                this.forceUpdate()
+            }else{
+                for(var i=0;i<data.length;i++){
+                    data[i].checked=false;
+                }
+                localStorage.setItem("cart",JSON.stringify(data));
+                this.forceUpdate()
+            }
+        }
     }
 }
 

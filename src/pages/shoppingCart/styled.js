@@ -105,5 +105,10 @@ export const ShoppingCartCSS = styled.div`
             width:100%;
         }
     }
+    .allMoney{
+        width:2.5rem;white-space:nowrap;
+        span{margin-left:.1rem;font-size:.3rem;}
+    }
+
 
 `
