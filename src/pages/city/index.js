@@ -10,16 +10,10 @@ import BscrollCom from "../../common/bscroll/index.js"
 class City extends Component {
     render() {
         let cities = this.props.data.city.city_list;
-        let hotCity,cityList;
-        if(localStorage.getItem("hotCity") && localStorage.getItem("cityList")){
-            hotCity = JSON.parse(localStorage.getItem("hotCity"));
-            cityList = JSON.parse(localStorage.getItem("cityList"));
-        }else{
-            hotCity = this.handleCityPopular(cities);
-            cityList = this.cityList(cities);
-        }
-        
+        let hotCity = this.handleCityPopular(cities);
+        let cityList = this.cityList(cities);
         return (
+
             <Container ref="cityContainer">
                 <BscrollCom ref="scroll">
                     <div className="city_body">
