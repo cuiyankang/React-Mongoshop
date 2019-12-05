@@ -6,14 +6,16 @@ import shop from "../../static/shopping.gif";
 class ShoppingCart extends Component {
     constructor() {
         super();
+        let { sCount, sPrice } = this.countPrice(JSON.parse(localStorage.getItem("cart"))); 
         this.state = {
             data: JSON.parse(localStorage.getItem("cart")),
-            
+            selectedAll: true,
+            sCount,
+            sPrice
         }
     }
     render() {
-        let { data } = this.state;
-        console.log(data, 222);
+        let { data, selectedAll, sPrice, sCount } = this.state;//信息
         return (
             <ShoppingCartCSS>
                 <div className="header">
@@ -22,12 +24,12 @@ class ShoppingCart extends Component {
                     <div className="iconfont right">&#xe601;</div>
                 </div>
                 <div className="centerAll">
-                    <ul>
+                    <ul ref="box">
                         {
                             data ? data.map((item, index) => (
                                 <div key={item.id}>
                                     <li className="shop">
-                                        <input type="checkbox" className="radio" name="aaa" />
+                                        <input type="checkbox" className="radio" name="aaa" ref="box" checked={item.flag} onChange={this.handleChange.bind(this, index)} />
                                         <img src={item.pic} alt="" />
                                         <div className="detailsOther">
                                             <div className="details">
@@ -38,9 +40,15 @@ class ShoppingCart extends Component {
                                             </div>
                                             <div className="num">
                                                 数量
-                                                <button onClick={this.handleReduce.bind(this)}>-</button>
+                                                <button onClick={this.handleReduce.bind(this,index)}>-</button>
                                                 <input type="text" value={item.num} onChange={this.handleChangeData.bind(this)} />
-                                                <button onClick={this.handleAdd.bind(this)}>+</button>
+                                                <button onClick={this.handleAdd.bind(this,index)}>+</button>
+                                            </div>
+                                            <div className="num">
+                                                小计&nbsp;&nbsp;
+                                                <span className="money">
+                                                    ￥{item.num*item.price}
+                                                </span>
                                             </div>
                                         </div>
                                     </li>
@@ -54,9 +62,16 @@ class ShoppingCart extends Component {
                     </div>
                 </div>
                 <div className="all">
-                    <input type="checkbox" className="radio left" name="aaa" />
-                    <div className="allMoney">合计￥100.00</div>
-                    <div>不含运费</div>
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: 'center' }}>
+                        <input type="checkbox" className="radio left" name="aaa" checked={selectedAll ? 'checkout' : ''} onChange={this.handleAllChange.bind(this)} />全选
+                    </div>
+                    <div className="allMoney">合计:{sPrice}</div>
+                    <div>
+                        数量:
+                        <span>
+                            {sCount}
+                        </span>
+                    </div>
                     <button>结算</button>
                 </div>
             </ShoppingCartCSS>
@@ -71,16 +86,92 @@ class ShoppingCart extends Component {
             // num:val
         })
     }
-
-    //存localstorage，从localstorage中取数据   不能用双数据绑定，因为取出的数组长度不固定，state中的num无法做到唯一性
-    //每次点击/修改数据时，从localstorage中重新获取数据
-    handleReduce() {
-        let num = this.state.data.num - 1;
-       
-    }
-    handleAdd() {
-        let num = this.state.data.num + 1;
+    handleChange(index) {
+        //全选状态的单选，判断
+        let cart = this.state.data;
+        cart[index].flag = !cart[index].flag;
+        this.setState({
+            data: cart
+        })
+        let bStop = true;
+        for (var i = 0; i < cart.length; i++) {
+            if (!cart[i].flag) {
+                bStop = false;
+            }
+        }
+        this.setState({
+            selectedAll: bStop,
+        })
         
+
+
+        //总价和总量
+        let { sCount, sPrice } = this.countPrice(cart);
+        this.setState({
+            sCount,
+            sPrice
+        })
+    }
+    countPrice(cart) {
+        let sPrice = 0, sCount = 0;
+
+        for (var i = 0; i < cart.length; i++) {
+            if (cart[i].flag) {
+                sCount += cart[i].num;//数量
+                sPrice += cart[i].num * cart[i].price;//总价：数量*单价
+            }
+        }
+        return {
+            sCount,
+            sPrice
+        }
+    }
+    handleAllChange() {
+        this.setState({
+            selectedAll: !this.state.selectedAll,
+        })
+        this.state.data.map((item, index) => {
+            item.flag = !this.state.selectedAll;
+        })
+        if(this.state.selectedAll){
+            this.setState({
+                sCount:0,
+                sPrice:0
+            })
+        }else{
+            let { sCount, sPrice } = this.countPrice(this.state.data);
+            this.setState({
+                sCount,
+                sPrice
+            })
+        }
+    }
+    handleReduce(index) {
+        let cart = this.state.data;
+        cart[index].num--;
+        if(cart[index].num<1){
+            cart[index].num = 1;
+        }
+        this.setState({
+            data: cart
+        })
+        let { sCount, sPrice } = this.countPrice(cart);
+        this.setState({
+            sCount,
+            sPrice
+        })
+    }
+    handleAdd(index) {
+        let cart = this.state.data;
+        cart[index].num++;
+        this.setState({
+            data: cart
+        })
+        let { sCount, sPrice } = this.countPrice(cart);
+        this.setState({
+            sCount,
+            sPrice
+        })
     }
 }
 
