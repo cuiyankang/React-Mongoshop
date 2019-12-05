@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 import { hotNine,SampleSale,GetOneData,GetTwoData,ChangeID,flodup,HandleSortList,LoginData,RegisterData } from "./ActionTypes"
 import { ListApi, categoryApi, foldupApi, folduplistApi, rankingApi, 
         rankinglistApi,halfApi,halflistApi,SampleSaleListApi,
@@ -6,6 +7,17 @@ import { ListApi, categoryApi, foldupApi, folduplistApi, rankingApi,
         SearchApi,SearchToListApi,HomeBannerApi,
         HomeNavApi,discountApi,layoutApi,BrandSaleApi,LineApi,
         FindApi,HandleSortListApi,LoginApi,cityListApi,sortApi } from "../api/hub";
+=======
+import { hotNine, SampleSale, GetOneData, GetTwoData, ChangeID, flodup, HandleSortList, LoginData, RegisterData } from "./ActionTypes"
+import {
+    ListApi, categoryApi, foldupApi, folduplistApi, rankingApi,
+    rankinglistApi, halfApi, halflistApi, SampleSaleListApi,
+    GetOneDataApi, GetTwoDataApi, ChangeIDApi,
+    SearchApi, SearchToListApi, HomeBannerApi,
+    HomeNavApi, discountApi, layoutApi, BrandSaleApi, LineApi,
+    FindApi, HandleSortListApi, LoginApi, cityListApi
+} from "../api/hub";
+>>>>>>> wang
 
 //九块九
 export const categoryAsyncAction = () => {
@@ -331,7 +343,7 @@ export const cityListAction = () => {
     
 
     return async (dispatch) => {
-        if(!localStorage.getItem('city')){
+        if (!localStorage.getItem('city')) {
             let data = await cityListApi();
             localStorage.setItem("city",JSON.stringify(data.data.cities));
             dispatch(getCityAction(data.data.cities))

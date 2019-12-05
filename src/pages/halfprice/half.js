@@ -8,7 +8,7 @@ class HalfEach extends React.Component {
         // console.log(this.props)
         let { halflist } = this.props;
 
-        console.log(halflist.list)
+        // console.log(halflist.list)
         return (
             <Fragment>
                 {
